@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex04</title>
+</head>
+<body>
+<h1>생성자5 - 생성자 상속</h1>
+<script>
+"use strict"
+
+function Engine(va, cy, cc) {  ///this의 주소도 200
+  //호출할 상위 생성자를 호출하지 않으면
+  //기본으로 Object() 생성자를 호출한다    
+  //Object.call(this);  
+  this.valve = v;   //밸브
+  this.cylinder = cy; //실린더
+  this.cc = cc;  //cc
+}
+
+var e1 = new Engine(16, 4, 2000);
+console.log(e1);
+
+function Car(va, cy, cc, ca, au) {
+  // 상위 생성자를 명시적으로 호출한다.
+  Engine.call(this, va, cy, cc);
+
+  this.capacity = ca;  //수용인원
+  this.auto = au;   //오토미션
+}
+//obj주소 200
+var c1 = new Car(16, 4, 2000, 5, true); //new라는 명령어로 빈 객체 생성 후
+console.log(c1);                        //이때 new로 만든 객체 주소 200이라면,
+
+</script>
+</body>
+</html>

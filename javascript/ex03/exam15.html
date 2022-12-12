@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex03</title>
+</head>
+<body>
+<h1>함수 - 함수도 객체다!</h1>
+<script>
+"use strict"
+// 함수도 객체이기 때문에 프로퍼티를 추가할 수 있다.
+//
+function f1() {
+    console.log("f1().....");
+}
+
+// 함수 = 객체 + 함수코드(파라미터, 리턴 값, 함수 몸체)
+f1(); // "f1 주소로 찾아가서 함수 객체에 저장된 함수 코드를 실행하라!"는 의미다.
+        //();이게 실행하라는 의미 //f1();=>함수 호출(funciton call)   
+// 함수는 객체이기 때문에 일반 객체처럼 사용할 수 있다.
+f1.v1 = "홍길동";  //f1에는 함수 주소가 포함돼있으므로 이 주소로 찾아가 v1을 저장하라는 의미
+f1.v2 = 100;            //
+f1.v3 = true;
+
+f1.hello = function() {  //함수를 정의하는 순간 별도 메모리에 함수 객체가 만들어짐
+  console.log("Hello!"); //객체는 객체를 포함할수 없고 그 객체의 주소만 품고 있는것
+};                        //따라서 f1함수에 익명함수의 주소를 보관하는것
+f1.hello2 = () => console.log("Hello2!");
+
+console.log(f1.v1);      //f1은 함수의 주소.
+console.log(f1.v2);
+console.log(f1.v3);
+f1.hello();           //f1의 주소로 가서 프로퍼티인 hello라는 이름으로 저장된 함수 찾고 호출
+f1.hello2();           //함수 호출은 함수를 찾아가서 실행하는것 뿐 아니라 불러오는것까지 포함
+
+
+</script>
+
+</body>
+</html>
