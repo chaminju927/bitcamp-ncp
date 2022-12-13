@@ -25,13 +25,12 @@ var e1 = document.getElementById("header4"); // vanilla JS 방식
 
 console.log(e1);
 console.log(e1.name); // undefined
-console.log(e1.localName); // 태그명
-console.log(e1.constructor.name); // 객체의 생성자 이름
-
+console.log(e1.localName); // 태그명 =>h1
+console.log(e1.constructor.name); // 객체의 생성자 이름 => HTMLHeadingElement()
 console.log("----------------------------");
 
 // => 생성자 상속 관계: HTMLHeadingElement() ---> HTMLElement() ---> Element() ---> Node() ---> EventTarget() ---> Object()
-console.log(e1 instanceof HTMLHeadingElement); // true
+console.log(e1 instanceof HTMLHeadingElement); // true //생성자를 초기화시킨 객체찾기
 console.log(e1 instanceof HTMLElement); // true
 console.log(e1 instanceof Element); // true
 console.log(e1 instanceof Node); // true

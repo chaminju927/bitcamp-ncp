@@ -18,8 +18,8 @@ function Score(name, kor, eng, math) {
 }
 
 // 2) 함수의 prototype 소속 프로퍼티
-Score.prototype.sum = function() {
-  return this.kor + this.eng + this.math;
+Score.prototype.sum = function() {  //스코어의 프로토타입에 sum이라는 이름의 함수 저장
+  return this.kor + this.eng + this.math; //객체는 키, 밸류를 기록하는 테이블이다
 };
 Score.prototype.aver = function() {
   return this.sum() / 3;
@@ -30,9 +30,13 @@ Score.prototype.aver = function() {
 
 var score1 = new Score("홍길동", 100, 100, 100);
 console.log(score1.sum(), score1.aver());
+// score1.sum() 찾기
+// 없으면 Score.prototype.sum() 찾기
 
 var score2 = new Score("임꺽정", 90, 90, 90);
 console.log(score2.sum(), score2.aver());
+// score2.sum() 찾기
+// 없으면 Score.prototype.sum() 찾기
 
 </script>
 </body>

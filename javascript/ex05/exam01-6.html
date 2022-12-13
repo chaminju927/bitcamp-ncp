@@ -7,8 +7,8 @@
 <body>
 <h1>DOM API - HTMLCollection과 NodeList</h1>
 <ul>
-  <li>테스트1</li>
-  <li>테스트2</li>
+ 
+  
   <li>테스트3</li>
   <li>테스트4</li>
   <li>테스트5</li>
@@ -26,8 +26,9 @@ console.log(list1);
 console.log(list2);
 
 document.querySelector("#btn1").onclick = function() {
-  var e = document.querySelector("li:first-child");
-  e.parentElement.removeChild(e);
+  var e = document.querySelector("li:first-child"); //li태그중 부모로부터 첫째
+  e.parentElement.removeChild(e);  //parentElement는 부모태그 주소 갖고있다
+                                    //부모태그에서 자식태그를 지우는데, e를 지워라
 
   console.log(list1); // HTMLCollection 은 현재 태그 상태를 반영한다.
   console.log(list2); // NodeList는 리턴 받은 값을 그대로 유지한다.

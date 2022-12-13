@@ -27,12 +27,12 @@ Score.prototype.aver = function() {
 };
 
 // => 특정 객체를 다루지 않는 경우 함수 소속 프로퍼티로 만들라!
-Score.count = 0;
-Score.create = function(csv) {
+Score.count = 0;       //생성자 함수에 변수 등록
+Score.create = function(csv) { //생성자 함수에 함수 등록
   Score.count++;
   var values = csv.split(",");
   return new Score(values[0], parseInt(values[1]), parseInt(values[2]), parseInt(values[3]));
-};
+};                         // values[1]값을 100으로 바꿈
 
 // 함수에 소속된 프로퍼티를 사용할 때는
 // 함수 이름을 통해 사용한다.

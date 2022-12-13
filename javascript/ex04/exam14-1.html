@@ -19,7 +19,8 @@ function Score(name, kor, eng, math) {
 
 // 1) 객체 소속 프로퍼티
 var score1 = new Score("홍길동", 100, 100, 100);
-score1.sum = function() {
+
+score1.sum = function() {    //함수를 sum, aver이름으로 객체에 담는다
   return this.kor + this.eng + this.math;
 };
 score1.aver = function() {

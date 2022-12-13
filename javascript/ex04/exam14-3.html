@@ -22,11 +22,12 @@ Score.sum = function() {
   return this.kor + this.eng + this.math;
 };
 Score.aver = function() {
-  return this.sum() / 3;
-};
+  return this.sum() / 3; //객체가 아닌  score에 대해
+};                        //일반적으로 쓰는 함수를 저장한것이므로
+                        
 
 // 함수 소속 프로퍼티는
-// 그 함수가 초기화시킨 객체를 통해 사용할 수 없다.
+// 그 함수가 초기화시킨 객체를 통해 사용할 수 없다. 
 // 즉 객체를 다루는 용도가 아닌 경우,
 // 함수 소속 프로퍼티로 만든다.
 
