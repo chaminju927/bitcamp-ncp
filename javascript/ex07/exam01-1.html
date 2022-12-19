@@ -19,21 +19,21 @@
 // => 이런 기법을 AJAX(Asynchronous JavaScript And XML)이라 부른다.
 
 // 버튼을 클릭할 때 서버에 HTTP 요청하여 응답 결과를 textarea 태그에 출력한다.
-var ta = document.querySelector("#ta");
+var ta = document.querySelector("#ta");   //공통으로 사용하는 변수이므로 밖에 따로 선언해둠
 
-document.querySelector("#btn1").onclick = () => {
+document.querySelector("#btn1").onclick = () => {  
 
     //1) AJAX 객체 준비 
-    var xhr = new XMLHttpRequest();
-    
+    var xhr = new XMLHttpRequest();       //매번 변수 만드는게 메모리차지는 더 심하지만
+                                          //클릭이벤트 없으면 사용하지 않는 변수이므로 함수 내에 선언해둠
     //2) 서버에 소켓 연결(동기 방식으로 요청)
     // => 1번 파라미터: HTTP 요청 method. ex) GET, POST, HEAD ...
     // => 2번 파라미터: 요청 URL
     // => 3번 파라미터: 비동기 여부/ 동기 방식은 서버에서 응답할때까지 기다린다
     xhr.open("GET", "http://localhost:3000/exam01-1", false);
     
-    //3) 서버에 HTTP(규칙에 따라) 요청을 보낸다.
-    // => 동기 방식으로 연결되었을 경우 서버에서 응답할 때까지 리턴하지 않는다.
+    //3) 서버에 HTTP(규칙에 따라) 요청을 보낸다. (서버에 요청)
+    // => 동기 방식으로 연결되었을 경우 '서버에서 응답할 때까지 리턴하지 않는다.'(=>기다리는게 false)
     xhr.send();
     
     //4) 서버가 응답한 콘텐트를 꺼낸다.
