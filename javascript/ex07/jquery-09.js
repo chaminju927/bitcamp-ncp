@@ -5,13 +5,15 @@
 // 5. html()
 // 6. on()
 // 7. appendTo
-// 8. Method Chaining ==> 설정한 함수의 주소를 리턴해 둔다
-//                  그래야 메서드가 여러번 호출되지 않고 이어서 실행됨
+// 8. Method Chaining 
+// 9. click()             
+
 function jQuery(selector) {
   let el = [];       //생성한 태그나 찾은 태그를 담는 배열
 
   if (selector.startsWith("<")) {
     el[0] = document.createElement(selector.substring(1, selector.length -1));
+  
   } else {                          
     let nodeList = document.querySelectorAll(selector);
     for (let e of nodeList) {
@@ -52,7 +54,7 @@ function jQuery(selector) {
           child.parentElement.removeChild(child);
         }
       }
-      return el;
+      return this;
   };
 
 //html
@@ -70,6 +72,12 @@ function jQuery(selector) {
     }
     return this;    //함수 호출시 사용할 주소를 저장
   };
-  return el;        
-}
+
+  //click()
+  el.click = function(handler){
+    this.on('click', handler);
+    return this;
+  }
+ };
+  return el;           
 var $ = jQuery;

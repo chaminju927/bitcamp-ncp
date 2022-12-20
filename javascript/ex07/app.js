@@ -153,3 +153,13 @@ app.get('/proxy2', (req, res) => {
    });      
   });
   
+  //post요청으로 들어온 이메일을 처리할때
+  app.post('/login',(req, res) => {            
+    res.set('Access-Control-Allow-Origin', '*'); 
+    res.set('Content-Type', 'text/plain; charset=UTF-8'); 
+  
+    var payload = `이메일: ${req.body.email}\n`;  //호출될 함수
+    payload += `암호: ${req.body.password}\n`;  
+  
+    res.send(payload);
+  });
