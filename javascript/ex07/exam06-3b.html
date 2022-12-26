@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex07</title>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"><!--jQuery.com의 userineterface에서 ui.css코드만 가져오기-->
+</head>
+<body>
+<h1>UI 컴포넌트를 다루는 방법 - JavaScript로 설정하기 II </h1>
+<!--부트스트랩은 클래스나 아이디 하나하나 체크해서 설정해야하지만
+jQuery를 사용하면 코드자체를 받아와서 그대로 사용가능. 더 간편함-->
+<div id = "btn1">버튼</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>  <!--jQuery-->
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>  <!--jQuery.com의 userineterface에서 ui.js코드만 가져오기-->
+
+<script>
+"use strict"
+$("#btn1").button();     
+</script>
+
+</body>
+</html>
+
+
+
+
+
