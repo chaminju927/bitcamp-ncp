@@ -8,7 +8,7 @@
 <h1>AJAX - POST 요청</h1>
 
 <h2>일반 POST 요청</h2>
-<form action="test4" method="post">
+<form action="http://192.168.0.18:3000/exam02-2" method="post">
 이름: <input type="text" name="name"><br>
 나이: <input type="text" name="age"><br>
 <button type="submit">등록</button> 
@@ -30,7 +30,7 @@ document.querySelector("#btn1").onclick = () => {
     var xhr = new XMLHttpRequest();
     
     // POST 요청은 데이터를 send()를 호출할 때 넘긴다. 
-    xhr.open("POST", "test4", false);
+    xhr.open("POST", "http://192.168.0.18:3000/exam02-2", false);
     
     // 주의! 
     // 서버에 POST 요청으로 데이터를 보낼 때는 반드시 Content-Type 헤더를 설정하여 
@@ -41,10 +41,11 @@ document.querySelector("#btn1").onclick = () => {
     xhr.setRequestHeader(
         "Content-Type", 
         "application/x-www-form-urlencoded");
-    
-    var messageBody = "name=" + window.encodeURIComponent("홍길동") + "&age=20";
-    console.log(messageBody);
-    
+        
+    //쿼리스트링 만들기 여기서 만든데이터를
+    var messageBody = "name=" + window.encodeURIComponent("홍길동") + "&age=20";  //url인코딩이 필요한 경우는 
+    console.log(messageBody);                                       // window.encodeURIComponent()
+    //send의 파라미터값으로 넣어줌
     xhr.send(messageBody);
     
     ta.value = xhr.responseText;

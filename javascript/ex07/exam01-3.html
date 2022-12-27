@@ -5,7 +5,7 @@
 <title>ex07</title>
 </head>
 <body>
-<h1>AJAX - AJAX의 제약 해소</h1>
+<h1>AJAX - AJAX의 제약 해소</h1>  <!--플레이스홀더는 안내문구 출력, 입력시 삭제된다-->
 URL: <input id="url" type="text" placeholder="AJAX 요청 URL" style="width:500px">
 <button id="btn1">요청</button><br>
 <textarea id="ta" cols="80" rows="10"></textarea>
@@ -23,13 +23,10 @@ var ta = document.querySelector("#ta");
 
 document.querySelector("#btn1").onclick = () => {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", url.value, false);
+    xhr.open("GET", url.value, false);  //url에서 입력된 값을 get해오겟다
     xhr.send();
     ta.value = xhr.responseText;
 };
-
-
-
 
 </script>
 </body>

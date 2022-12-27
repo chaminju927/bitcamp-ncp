@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex06</title>
+</head>
+<body>
+<h1>이벤트 - form의 submit 버튼 만들기</h1>
+<p>form의 submit 버튼을 클릭하면 서버에 요청을 한다.</p>
+
+<form action="https://www.daum.net">
+  <input type="text" name="title">
+  <button>전송1</button> 
+</form>
+
+<form action="https://www.daum.net">
+  <input type="text" name="title">
+  <button type="submit">전송2</button>
+</form>
+
+<form action="https://www.daum.net">
+  <input type="text" name="title">
+  <input type="submit" value="전송3">
+</form>
+
+
+
+<script>
+"use strict"
+
+document.querySelector("#form2").onsubmit = () => {
+  return false;
+};
+
+document.querySelector("#form3").onsubmit = (e) => {
+  e.preventDefault();
+};
+
+document.querySelector("#form4").addEventListener("submit", (e) => {
+  e.preventDefault();
+});
+
+document.querySelector("#form5").addEventListener("submit", (e) => {
+  return false; // addEventListener()로 이벤트 핸들러를 등록할 때는
+  // return false 가 의미없다. 동작되지 않는다.
+  // 반드시 e.preventDefault()를 호출하라!
+});
+
+
+</script>
+</body>
+</html>

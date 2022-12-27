@@ -35,11 +35,11 @@ document.querySelector("#btn1").onclick = () => {
         // 실제 우리가 관심을 두는 것은 서버가 응답을 완료했는지 여부이다.
         // 응답이 완료되었을 때 우리는 서버가 보낸 값을 꺼내 사용한다.
         if (xhr.readyState == 4) {
-        	ta.value = xhr.responseText;
+        	ta.value = xhr.responseText; //app.js파일에 등록됨
         }
     };
     
-    xhr.open("GET", "test5", true);
+    xhr.open("GET", "http://localhost:3000/exam03-1", true);
     xhr.send();
     console.log("send() 리턴함.");
 };
