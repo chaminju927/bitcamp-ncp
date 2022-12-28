@@ -8,7 +8,7 @@ package com.eomcs.lang.ex03;
 //
 //* 참고!
 //- 그림이나 사진(BITMAP), 음성(WAV), 색상(RGB)을 저장할 때도 2진수로 표현한다.
-// 
+//
 
 public class Exam0240 {
   public static void main(String[] args) {
@@ -19,8 +19,8 @@ public class Exam0240 {
 
 //## 정수를 2진수로 표현하는 방법
 //1) 부호-크기/절대값(Sign-Magnitude)
-//- 부동 소수점에서 가수부(significand or mantissa)를 저장할 때 사용한다.
-//- 맨 왼쪽 1비트를 부호 비트로 사용한다. 양수는 0, 음수는 1 이다. 
+//- 부동 소수점에서 가수부(significant or mantissa)를 저장할 때 사용한다.
+//- 맨 왼쪽 1비트를 부호 비트로 사용한다. 양수는 0, 음수는 1 이다.
 //- 나머지 비트는 절대값(magnitude)으로 저장한다.
 //    8비트 = 1비트(부호) + 7비트(절대값)
 //  예) +24 => |+24| = 24 ---> 0001 1000

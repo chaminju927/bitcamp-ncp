@@ -8,7 +8,10 @@ public class Exam0350 {
     System.out.println(12.375f);
     System.out.println(-12.375f);
     System.out.println(12.375);
-  }
+    System.out.println(5678.37f);
+    System.out.println(11.23356f);
+    System.out.println(75678.37f+ 11.23356f);  //75689.60356 인데 출력값은 다름
+  }                               //float값이 아닐때(8byte)더 정확한 값 출력됨
 }
 
 //## 실습
