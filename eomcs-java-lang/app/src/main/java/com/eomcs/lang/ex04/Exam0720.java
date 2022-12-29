@@ -14,7 +14,6 @@ class MyClass {
     System.out.println(v2);
   }
 }
-
 public class Exam0720 {
   public static void main(String[] args) {
 
@@ -27,7 +26,7 @@ public class Exam0720 {
 
 
     //3) 로컬 변수를 사용하는 방법
-    MyClass.m1(100); // 메서드를 실행할 때 변수가 준비된다. 메서드를 실행하는 동안만 
+    MyClass.m1(100); // 메서드를 실행할 때 변수가 준비된다. 메서드를 실행하는 동안만
 
     // 메서드 호출이 끝나면, 그 메서드의 로컬 변수를 사용할 방법이 없다.
     //    v1 = 300; // 오류!
