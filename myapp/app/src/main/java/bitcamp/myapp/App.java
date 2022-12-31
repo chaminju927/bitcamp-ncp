@@ -4,74 +4,62 @@ import java.sql.Date;  //  ctrl shift o로 자동 import
 import java.util.Scanner;
 
 public class App {
+	static final int SIZE = 100;
+	static int count = 0;
+	
+	static int[] no = new int[SIZE];
+	static String[] name = new String[SIZE];
+	static String[] tel = new String[SIZE];
+	static String[] postNo = new String[SIZE];  // int일때는 맨앞에 0이 생략됨
+	static String[] basicAddress = new String[SIZE];
+	static String[] detailAddress = new String[SIZE];
+	static boolean[] working = new boolean[SIZE];
+	static char[] gender = new char[SIZE];
+	static byte[] level = new byte[SIZE];
+	static String[] cratedDate = new String[SIZE];
+	
   public static void main(String[] args) {
-
-    Scanner keyScanner = new Scanner(System.in);
-
-    final int SIZE = 100;
-    int count = 0;
-
-    int[] no = new int[SIZE];
-    String[] name = new String[SIZE];
-    String[] tel = new String[SIZE];
-    String[] postNo = new String[SIZE];  // int일때는 맨앞에 0이 생략됨
-    String[] basicAddress = new String[SIZE];
-    String[] detailAddress = new String[SIZE];
-    boolean[] working = new boolean[SIZE];
-    char[] gender = new char[SIZE];
-    byte[] level = new byte[SIZE];
-    String[] cratedDate = new String[SIZE];
+	  
+	  inputMembers();
+	  
+	  System.out.println();
+	  
+	  printMembers();
+  }
+  
+  static void inputMembers() {
+	  Scanner keyScanner = new Scanner(System.in);  //파라미터값?
 
     for (int i = 0; i < SIZE; i++ ) {
-      System.out.print("번호?");
-      no[i] = Integer.parseInt(keyScanner.nextLine()); //왜 번호만 int로 변환??
+      no[i] = promptInt(keyScanner,"번호?");
+      name[i] = promptString(keyScanner,"이름?");
+      tel[i] = promptString(keyScanner,"전화?");
+      postNo[i] = promptString(keyScanner,"우편번호?");
+      basicAddress[i] = promptString(keyScanner,"주소?"); ///prompt
+      detailAddress[i] = promptString(keyScanner,"상세주소?");
 
-      System.out.print("이름?");
-      name[i] = keyScanner.nextLine();
-
-      System.out.print("전화?");
-      tel[i] = keyScanner.nextLine();
-
-      System.out.print("우편번호?");
-      postNo[i] = keyScanner.nextLine();
-
-      System.out.print("주소?");
-      basicAddress[i] = keyScanner.nextLine();
-
-      System.out.print("상세주소?");
-      detailAddress[i] = keyScanner.nextLine();
-
-      System.out.println("0. 미취업");
-      System.out.println("1. 재직중");
-      System.out.print("재직자?");
-      working[i] = Integer.parseInt(keyScanner.nextLine()) == 1;  //1값을 입력받으면 배열추가?
-
-      System.out.println("0. 남자");
-      System.out.println("1. 여자");
-      System.out.print("성별?");
-      gender[i] = Integer.parseInt(keyScanner.nextLine()) == 0? 'M' : 'W';
-
-      System.out.println("0. 비전공자");
-      System.out.println("1. 준전공자");
-      System.out.println("2. 전공자");
-      System.out.print("전공?");
-      level[i] = Byte.parseByte(keyScanner.nextLine());
-
+      String title = "0.미취업\n1. 재직중\n재직자?";
+      working[i] = promptInt(keyScanner, title) ==1;
+  
+      title = "0. 남자\n1. 여자\n성별? ";
+      working[i]= promptInt(keyScanner, title) == 0 ? 'M' : 'W';
+     
+      title = "0. 비전공자\n1. 준전공자\n2. 전공자\n전공?";
+      level[i] = (byte)promptInt(keyScanner, title);   //byte도 파라미터값?
+      
       Date today = new Date(System.currentTimeMillis());
       createdDate[i] = today.toString();
 
       count++;
 
-      System.out.println("계속 입력하시겠습니까?(Y/N)");
-      String str = keyScanner.nextLine();
+      String str = promptString(keyScanner."계속 입력하시겠습니까? (Y/N)");
       if (!str.equalsIgnoreCase("Y")&& str.length()!=0); {
         break;
       }
     }
     keyScanner.close();
 
-    System.out.println();
-
+    static void printMembers() {
     for (int i = 0; i < count; i++) {
       System.out.printf("번호: %d\n","no[i]");  //숫자는 %d 문자는 %s
       System.out.printf("이름: %s\n","name[i]");
@@ -80,7 +68,7 @@ public class App {
       System.out.printf("주소: %s\n","basicAddress[i]");
       System.out.printf("상세주소: %s\n","detailAddress[i]");
       System.out.printf("재직자: %s\n",working[i]? "yes" : "no");
-      System.out.printf("성별: %s\n","gender[i]");
+      System.out.printf("성별: %s\n",gender[i] == 'M' ? "남자" : "여자");
 
       String levelTitle;
       switch (level[i]) {
@@ -93,7 +81,15 @@ public class App {
 
       System.out.println("-----------------------");
     }
-  } //main()
+  } 
+  
+    static String promptString(Scanner scanner, String title) {
+    	System.out.print(title);
+    	return scanner.nextLine();
+    }
+    static int promptInt(Scanner scanner, String title) {//////scanner scanner?
+    	return Integer.parseInt(promptString(scanner, title));
+    }
 } // class App
 
 
