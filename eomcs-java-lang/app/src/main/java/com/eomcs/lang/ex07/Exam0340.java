@@ -7,7 +7,7 @@ public class Exam0340 {
   // swap()에서 만든 int a와 int b의 값을 main()에서 사용하기
   // primitive data type 값을 객체에 담아 넘겨라!
 
-  static class MyObject {
+  static class MyObject {             //사용시점에만 로딩된다.
     int a;
     int b;
   }
@@ -21,7 +21,7 @@ public class Exam0340 {
 
   public static void main(String[] args) {
     int a = 100;
-    int b = 200;
+    int b = 200;     //
 
     MyObject ref = swap(a, b);
 

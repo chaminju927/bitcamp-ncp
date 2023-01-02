@@ -22,7 +22,7 @@ public class Exam0111 {
 
     int starLen = 1;
     while (starLen <= len) {
-      printSpaces((len - starLen) / 2);
+      printSpaces((len - starLen) / 2); // 메서드 이름이
 
       // 별 출력
       int starCnt = 1;

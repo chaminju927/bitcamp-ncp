@@ -5,7 +5,7 @@ package com.eomcs.lang.ex07;
 public class Exam0330 {
 
   // main()에서 만든 int a와 int b의 값을 바꾸고 싶다면,
-  // primitive data type 값을 직접 넘기지 말고 
+  // primitive data type 값을 직접 넘기지 말고
   // 객체에 담아 넘겨라!
   static class MyObject {
     // => class 는 메모리의 구조를 설계하는 문법이다.
@@ -27,9 +27,9 @@ public class Exam0330 {
     // 그리고 그 메모리(인스턴스=객체)의 주소를 ref 변수에 저장한다.
     MyObject ref = new MyObject();
     ref.a = 100;
-    ref.b = 200;
+    ref.b = 200;      //ref로 저장된 주소로 찾아가 b에 값 200넣기
 
-    // a, b 변수가 들어 있는 인스턴스(객체=메모리)의 주소를 
+    // a, b 변수가 들어 있는 인스턴스(객체=메모리)의 주소를
     // swap()에 넘긴다. => 그래서 "call by reference"인 것이다.
     swap(ref);
     System.out.printf("main(): a=%d, b=%d\n", ref.a, ref.b);

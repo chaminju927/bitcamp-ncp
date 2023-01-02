@@ -21,7 +21,7 @@ public class Exam0114 {
   }
 
   static int getSpaceLength(int totalStar, int displayStar) {
-    return (totalStar - displayStar) / 2;
+    return (totalStar - displayStar) / 2;            //공백
   }
 
   public static void main(String[] args) {

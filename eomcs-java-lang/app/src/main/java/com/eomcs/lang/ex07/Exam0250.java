@@ -10,7 +10,7 @@ public class Exam0250 {
   // => 메서드 내부에서는 배열처럼 사용한다.
   //
   // 다음은 hello()를 호출할 때 String 값을 0개 이상 전달할 수 있다.
-  static void hello(String... names) {
+  static void hello(String... names) {     //가변 파라미터는 변수처럼 사용
     for (int i = 0; i < names.length; i++) {
       System.out.printf("%s님 반갑습니다.\n", names[i]);
     }
@@ -34,5 +34,5 @@ public class Exam0250 {
     System.out.println("-------------------");
 
     //    hello("홍길동", 20, "오호라"); // 다른 타입은 안된다. 컴파일 오류!
-  }
+  } //자바와달리 타입을 엄격하게 따져야 함
 }

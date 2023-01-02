@@ -15,7 +15,7 @@ public class Exam0110 {
     while (starLen <= len) {
       // 별 앞에 공백 출력
       int spaceCnt = 1;
-      int spaceLen = (len - starLen) / 2;
+      int spaceLen = (len - starLen) / 2; //앞부분의 공백갯수 = (전체 길이-별길이)/2
       while (spaceCnt <= spaceLen) {
         System.out.print(" ");
         spaceCnt++;
