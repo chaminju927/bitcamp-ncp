@@ -2,7 +2,6 @@ package com.eomcs.oop.ex01;
 
 // # 패키지 멤버 클래스와 중첩 클래스
 //
-
 // 패키지 멤버 클래스
 // - 단독으로 선언하는 클래스이다.
 // - "패키지 멤버 클래스"라 부른다.
@@ -10,7 +9,7 @@ package com.eomcs.oop.ex01;
 //   보통은 한 파일에 한 클래스를 선언한다.
 // - 패키지 멤버 클래스는 접근 권한이 있다면 누구든 사용할 수 있다.
 //
-// bin/main/com/eomcs/oop/ex01/A.class
+// bin/main/com/eomcs/oop/ex01/A.class : 컴파일시 놓이는 폴더
 class A {}
 
 // => bin/main/com/eomcs/oop/ex01/Exam0510.class
@@ -29,7 +28,7 @@ public class Exam0510 {
   // 1) 스태틱 중첩 클래스
   // - 이 클래스를 소유하고 있는 클래스 뿐만 아니라 다른 클래스도 사용할 수 있다.
   //
-  // bin/main/com/eomcs/oop/ex01/Exam0510$B.class
+  // bin/main/com/eomcs/oop/ex01/Exam0510$B.class  //컴파일된 클래스를 보고 스태틱 여부 판단 불가
   static class B {}
 
   // 2) 논-스태틱 중첩 클래스 = inner class
@@ -71,7 +70,7 @@ public class Exam0510 {
     //    C obj3 = new C(); // 컴파일 오류!
 
     // 다른 메서드에 정의된 로컬 클래스는 사용할 수 없다.
-    //    D obj4 = new D(); // 컴파일 오류! 
+    //    D obj4 = new D(); // 컴파일 오류!
 
   }
 

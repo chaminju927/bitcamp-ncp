@@ -8,7 +8,6 @@ public class Exam0740 {
     java.lang.System obj2; // OK!
     java.lang.reflect.Array obj3;
     java.io.File obj4; // OK!
-
     Integer obj5; // OK!
     System obj6; // OK!
     //    Array obj7; // 컴파일 오류!

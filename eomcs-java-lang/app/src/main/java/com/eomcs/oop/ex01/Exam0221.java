@@ -17,7 +17,7 @@ public class Exam0221 {
 
     Score[] arr = new Score[3];
 
-    arr[0] = new Score();
+    arr[0] = new Score();  //배열에 레퍼런스 주소 하나씩 저장
     arr[1] = new Score();
     arr[2] = new Score();
 
