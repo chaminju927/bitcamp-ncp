@@ -2,7 +2,7 @@ package com.eomcs.oop.ex02.domain;
 
 public class Score2 {
 
-  public String name; 
+  public String name;
   public int kor;
   public int eng;
   public int math;
@@ -14,7 +14,7 @@ public class Score2 {
   //    - 메서드명은 클래스 이름과 같아야 한다.
   //    - 리턴 타입은 없다.
   //    - 오직 new 명령을 실행할 때 호출할 수 있다. 나중에 따로 호출할 수 없다.
-  public Score2(String n, int k, int e, int m) {
+  public Score2(String n, int k, int e, int m) {  //파라미터로 받은값을 인스턴스에 저장
     this.name = n;
     this.kor = k;
     this.eng = e;
@@ -24,7 +24,7 @@ public class Score2 {
   }
 
   public void compute() {
-    this.sum = this.kor + this.eng + this.math;
+    this.sum = this.kor + this.eng + this.math;  //이때 this는 컴파일러가 자동생성하는 빌트인 변수
     this.aver = (float) this.sum / 3;
   }
 }
