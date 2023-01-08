@@ -1,4 +1,4 @@
-package bitcamp.myapp;
+package main.java.bitcamp.myapp;
 
 import java.sql.Date;
 
@@ -28,7 +28,7 @@ public class MemberHandler {
     members[count++] = m;
   }
 
-  static void printMembers() {
+  static void printMembers() {    //목록
     System.out.println("번호\t이름\t전화\t재직\t전공");
 
     for (int i = 0; i < count; i++) {
@@ -40,7 +40,7 @@ public class MemberHandler {
     }
   }
 
-  static void printMember() {
+  static void printMember() {         //조회!!  
     int memberNo = Prompt.inputInt("회원번호? ");
 
     Member m = findByNo(memberNo);

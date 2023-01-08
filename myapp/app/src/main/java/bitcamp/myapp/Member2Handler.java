@@ -1,4 +1,4 @@
-package bitcamp.myapp;
+package main.java.bitcamp.myapp;
 
 import java.sql.Date;
 

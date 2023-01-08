@@ -1,4 +1,4 @@
-package bitcamp.myapp;
+package main.java.bitcamp.myapp;
 
 // 회원 데이터를 담을 메모리를 설계한다.
 public class Member {
