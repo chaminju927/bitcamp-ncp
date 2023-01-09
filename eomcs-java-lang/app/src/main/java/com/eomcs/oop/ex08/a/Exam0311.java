@@ -3,7 +3,6 @@ package com.eomcs.oop.ex08.a;
 
 class Score3 {
   String name;
-
   // 국, 영, 수 점수를 바꿀 때 마다 자동으로 합계, 평균을 계산해야 한다.
   // 방법?
   // - 직접 필드의 값을 바꾸게 하지 말고 메서드를 통해 바꾸도록 유도한다.
@@ -48,8 +47,8 @@ class Score3 {
   }
 
 
-  private int sum;
-  private float aver;
+  private int sum;   //sum, aver는 메서드를 통해 값을 만들어내는것이므로
+  private float aver;  //getter만 만들어야 함
 
   public int getSum() {
     return this.sum;

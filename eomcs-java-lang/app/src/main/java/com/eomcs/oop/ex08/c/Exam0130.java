@@ -28,7 +28,7 @@ class Patient3 {
       this.age = age;
     else
       throw new RuntimeException("나이가 유효하지 않습니다!");
-  }
+  }    //예외를 던지는 문법 throw , 메서드가 호출되다가 멈춘다
 
   public int getHeight() {
     return height;

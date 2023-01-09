@@ -5,7 +5,6 @@ public class Exam0214 extends com.eomcs.oop.ex08.b.sub.Y {
 
   public static void main(String[] args) {
     Exam0214 obj = new Exam0214();
-
     //    obj.privateVar = 100; // 접근 불가! 오직 그 클래스 안에서만 사용 가능.
     //    obj.defaultVar = 100; // 접근 불가! 같은 패키지까지만 접근 가능.
 

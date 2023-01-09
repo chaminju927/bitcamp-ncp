@@ -8,13 +8,11 @@ public class Exam0213 extends com.eomcs.oop.ex08.b.sub.Y {
     // 다른 패키지의 클래스를 그 클래스의 서브 클래스가 어디까지 접근할 수 있을까?
     com.eomcs.oop.ex08.b.sub.Y obj = new com.eomcs.oop.ex08.b.sub.Y();
 
-
     //    obj.privateVar = 100; // 접근 불가! 오직 그 클래스 안에서만 사용 가능.
     //    obj.defaultVar = 100; // 접근 불가! 같은 패키지까지만 접근 가능.
-
     //    obj.protectedVar = 100; // 접근 불가! 같은 패키지 또는 자식 클래스 접근 가능
     // 자식 클래스인데 접근 불가?
-    // 이유 => 서브 클래스를 통해 만든 인스턴스 변수가 아니다.
+    // 이유 => 서브 클래스(y)를 통해 만든 인스턴스 변수가 아니다.
 
     obj.publicVar = 100; // OK! 모두 다 접근 가능.
   }
