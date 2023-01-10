@@ -1,13 +1,12 @@
-package bitcamp.boot.app;
+package bitcamp.boot.app.vo;
 
-public class Board {
-  int no;
-  String title;
-  String content;
-  String password;
-  String createdDate;
-  int viewCount;
-
+public class Board {          //설계도 준비
+  private int no;
+  private String title;
+  private String content;
+  private String password;
+  private String createdDate;
+  private int viewCount;
 
   public int getNo() {
     return no;
@@ -48,5 +47,3 @@ public class Board {
 
 
 }
-
-
