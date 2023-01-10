@@ -7,6 +7,72 @@
     <title>Document</title>
 </head>
 <body>
+  <h1>게시</h1>
+  <form>
+  <table border="1">
+    <tbody>
+        <tr>
+          <th>번호</th>
+          <td><input type="text" name="no" id="f-no"readonly></td>
+        </tr>
+        <th>이름</th>
+        <td><input type="text" name="name" id="f-name"readonly></td>
+      </tr>
+      <tr>
+        <th>전화번호</th>
+        <td><input type="text" name="tel" id="f-tel"readonly></td>
+      </tr>
+      <tr>
+        <th>우편번호</th>
+        <td><input type="text" name="postNo" id="f-postNo"readonly></td>
+      </tr>
+      <tr>
+        <th>기본주소</th>
+        <td><input type="text" name="basicAddress" id="f-basicAddress"readonly></td>
+      </tr>
+      <tr>
+        <th>상세주소</th>
+        <td><input type="text" name="detailAddress" id="f-detailAddress"readonly></td>
+      </tr>
+      <tr>
+        <th>성별</th>
+        <td><input type="text" name="gender" id="f-gender"readonly></td>
+      </tr>
+      <tr>
+        <th>비밀번호</th>
+        <td><input type="password" name="password" id="f-password"readonly></td>
+      </tr>
+    
+    </tbody>
+  </table>
+  <button id="update-btn" type="button">변경</button>
+  <button id="delete-btn" type="button">삭제</button>
+  <button id="list-btn" type="button">목록</button> 
+</form>
+
+<script>
+
+var values = location.href.split('?');  //url에서 ?을 기준으로 두 배열로 쪼갬
+if(values.length != 2) {
+  alert("올바른 페이지 주소가 아닙니다.");
+  throw "no 파라미터 값이 누락되었습니다";
+}
+
+var values2 = values[1].split("=");   //values[1]은 위에서 쪼갠것중 index1의 값
+if (values2.length != 2 || values2[0] != "no") {
+  alert("올바른 페이지 주소가 아닙니다.");
+  throw "no 파라미터 값이 누락되었습니다";
+}
+
+var no =parseInt(values2[1]);  //파싱 실패시 NaN출력됨 오류안뜸
+if (isNaN(no)) {
+  alert("페이지 번호가 옳지 않습니다.");
+  throw "no 파라미터 값이 숫자가 아닙니다";
+}
+
+
+</script>
+
     
 </body>
 </html>

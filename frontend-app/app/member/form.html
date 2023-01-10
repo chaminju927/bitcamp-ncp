@@ -55,7 +55,7 @@ document.querySelector('#add-btn').onclick = (e) => {
   var gender = encodeURIComponent(document.querySelector('#f-gender').value);
   var password = encodeURIComponent(document.querySelector('#f-password').value);
 
-  console.log(`name=${name}tel=${tel}password=${password}`);
+  //console.log(`name=${name}tel=${tel}password=${password}`);
 
   fetch('http://localhost:8080/members',{  
     method: 'POST',
