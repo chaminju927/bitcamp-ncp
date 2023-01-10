@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>회원 정보</h1>
+    <a href="form.html">새 글</a>
+    <table border="1">
+        <thead>
+          <tr>
+            <th>이름</th>
+            <th>전화번호</th>
+            <th>우편번호</th>
+            <th>기본주소</th>
+            <th>상세주소</th>
+            <th>성별</th>
+            <th>비밀번호</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+<script>
+    var tbody = document.querySelector("tbody");
+
+    fetch('http://localhost:8080/boards') //겟요청은 헤더 바디 필요없음
+  .then((response) => response.json())  
+  .then((obj) => { 
+    var html = '';                   
+      for (var b of obj.data) {
+        html += `<tr>
+            <td>${m.name}</td>
+            <td>${m.tel}</td>
+            <td>${m.postNo}</td>
+            <td>${m.basicAddress}</td>
+            <td>${m.detailAddress}</td>
+            <td>${m.gender}</td>
+            <td>${m.password}</td>
+
+
+
+
+
+
+
+</script>
+
+   
+    
+</body>
+</html>

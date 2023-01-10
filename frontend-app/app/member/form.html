@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>회원 등록</h1>
+    <form enctype ="application/x-www-form-urlencoded">
+        <table border="1">
+            <tbody>
+            <tr>
+                <th>이름</th>
+                <td><input type="text" name="name" id="f-name"></td>
+            </tr>
+            <tr>
+                <th>전화번호</th>
+                <td><input type="text" name="tel" id="f-tel"></td>
+            </tr>
+            <tr>
+                <th>우편번호</th>
+                <td><input type="text" name="postNo" id="f-postNo"></td>
+            </tr>
+            <tr>
+                <th>기본주소</th>
+                <td><input type="text" name="basicAddress" id="f-basicAddress"></td>
+            </tr>
+            <tr>
+                <th>상세주소</th>
+                <td><input type="text" name="detailAddress" id="f-detailAddress"></td>
+            </tr>
+            <tr>
+                <th>성별</th>
+                <td><input type="text" name="gender" id="f-gender"></td>
+            </tr>
+            <tr>
+                <th>비밀번호</th>
+                <td><input type="password" name="password" id="f-password"></td>
+            </tr>
+            </tbody>
+        </table>
+        <button id="add-btn" type="button">등록</button>
+        <button id="cancel-btn" type="button">취소</button>
+    </form>
+<script>
+
+document.querySelector('#add-btn').onclick = (e) => {
+  var name = encodeURIComponent(document.querySelector('#f-name').value);
+  var tel = encodeURIComponent(document.querySelector('#f-tel').value);
+  var postNo = encodeURIComponent(document.querySelector('#f-postNo').value);
+  var basicAddress = encodeURIComponent(document.querySelector('#f-basicAddress').value);
+  var detailAddress = encodeURIComponent(document.querySelector('#f-detailAddress').value);
+  var gender = encodeURIComponent(document.querySelector('#f-gender').value);
+  var password = encodeURIComponent(document.querySelector('#f-password').value);
+
+  console.log(`name=${name}tel=${tel}password=${password}`);
+
+  fetch('http://localhost:8080/members',{  
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/x-www-form-urlencoded'   /*form에서 enctype url 그대로*/
+    },
+    body: `name=${name}&tel=${tel}&postNo=${postNo}&basicAddress=${basicAddress}&detailAddress=${detailAddress}&gender=${gender}&password=${password}`
+  })
+  .then((response) => {return response.json();})  /*fetch가 이행됐을때 실행되는 함수*/
+  .then((obj) => {                       //위에서 받아온 제이슨
+      location.href = "list.html";
+    }) 
+  .catch((err) => {
+    alert("서버 요청 오류!")
+    console.log(err);
+  });      
+};
+
+
+document.querySelector('#cancel-btn').onclick = (e) => {
+  location.href = "list.html";
+};
+
+
+</script>
+</body>
+</html>
