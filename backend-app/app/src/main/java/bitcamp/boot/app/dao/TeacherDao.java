@@ -42,9 +42,9 @@ public class TeacherDao {
     return null;
   }
 
-  int indexOf(Teacher t) {
+  int indexOf(Teacher teacher) {
     for (int i = 0; i < this.count; i++) {
-      if (this.teachers[i].getNo() == t.getNo()) {
+      if (this.teachers[i].getNo() == teacher.getNo()) {
         return i;
       }
     }

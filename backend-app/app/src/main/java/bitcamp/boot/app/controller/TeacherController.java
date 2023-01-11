@@ -20,14 +20,15 @@ public class TeacherController {
   TeacherDao teacherDao = new TeacherDao();
 
   @PostMapping("/teachers")     //스프링부트가 호출하는 메서드
-  public Object addTeacher(
-      String name,
-      String tel,
-      String email,
-      String academicLevel,
-      String university,
-      String major,
-      int pay ) {
+  public Object addTeacher(Teacher teacher
+      //      String name,
+      //      String tel,
+      //      String email,
+      //      String academicLevel,
+      //      String university,
+      //      String major,
+      //      int pay
+      ) {
 
     Teacher t = new Teacher();
     t.setName(name);
@@ -60,14 +61,14 @@ public class TeacherController {
     return contentMap;
   }
 
-  @GetMapping("/teachers/{teacherNo}")
-  public Object getTeacher(@PathVariable int teacherNo) {
-    Teacher t = this.teacherDao.findByNo(teacherNo);
+  @GetMapping("/teachers/{no}")
+  public Object getTeacher(@PathVariable int no) {
+    Teacher t = this.teacherDao.findByNo(no);
     Map<String,Object> contentMap = new HashMap<>();
 
     if (t == null) {
       contentMap.put("status","failure");
-      contentMap.put("data","해당 번호의 회원이 없습니다.");
+      contentMap.put("data", "강사가 없습니다.");
     } else {
       contentMap.put("status","success");
       contentMap.put("data", t);
@@ -93,6 +94,8 @@ public class TeacherController {
     contentMap.put("status","success");
     return contentMap;
   }
+
+
   @DeleteMapping("/teachers/{teacherNo}")
   public Object deleteTeacher(@PathVariable int teacherNo) {
 

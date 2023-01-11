@@ -56,7 +56,6 @@ public class MemberController {        //html origin 서버에서 받아온 데�
     // 응답 결과를 담을 맵 객체 준비
     Map<String,Object> contentMap = new HashMap<>();
     contentMap.put("status","success");
-
     return contentMap;
   }
 
