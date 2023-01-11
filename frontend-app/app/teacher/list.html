@@ -7,59 +7,58 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>강사</h1>
-  <a href = "form.html">새 강사 등록하기</a>
-  <table border="1">
-    <thead>
-      <tr>
-        <th>번호</th>
-        <th>이름</th>
-        <th>전화</th>
-        <th>이메일</th>
-        <th>최종학력</th>
-        <th>대학교</th>
-        <th>전공</th>
-        <th>시간당 강사료</th>
-      </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table> 
+<h1>강사</h1>
+<a href="form.html">새 강사</a>
+<table border="1">
+  <thead>
+    <tr>
+      <th>번호</th>
+      <th>이름</th>
+      <th>전화</th>
+      <th>학위</th>
+      <th>전공</th>
+      <th>시강료</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
 
-  <script>
- var tbody = document.querySelector("tbody");
- 
- function getLevelTitle(academicLevel) {
-  switch(academicLevel) {
-    case 0 : return "학사";
-    case 1 : return "석사";
-    case 2 : return "박사";
+<script>
+var tbody = document.querySelector("tbody");
+
+function getDegreeTitle(level) {
+  switch (level) {
+    case 1: return "고졸";
+    case 2: return "전문학사";
+    case 3: return "학사";
+    case 4: return "석사";
+    case 5: return "박사";
+    case 0: return "기타";
     default: return "";
   }
- }
+}
 
- fetch('http://localhost:8080/teachers') //겟요청은 헤더 바디 필요없음
-  .then((response) => {return response.json();})  
-  .then((obj) => { 
-    var html = '';                       //제이슨이 deserialize된 객체
-      for (var t of obj.data) {
-        html += `<tr>
-          <td>${t.no}</td>
-          <td><a href="view.html?no=${t.no}">${t.name} </a></td>
-          <td>${t.tel}</td>
-          <td>${t.email}</td>
-          <td>${getLevelTitle(t.academicLevel)}</td>
-          <td>${t.university}</td>
-          <td>${t.major}</td>
-          <td>${t.pay}</td>
-          </tr>\n`;
-      }
-      tbody.innerHTML = html; //기존 html내용 대신에 새로 만든 내용 넣기
-    }) 
+fetch('http://localhost:8080/teachers')
+  .then((response) => {return response.json();})
+  .then((obj) => {
+    var html = '';
+    for (var t of obj.data) {
+      html += `<tr>
+        <td>${t.no}</td>
+        <td><a href="view.html?no=${t.no}">${t.name} </a></td>
+        <td>${t.tel}</td>
+        <td>${getDegreeTitle(t.degree)}</td>
+        <td>${t.major}</td>
+        <td>${t.wage}</td>
+        </tr>\n`;
+    }
+    tbody.innerHTML = html;
+  })
   .catch((err) => {
-    alert("서버 요청 오류!")
+    alert("서버 요청 오류!");
     console.log(err);
-  });      
-  </script>
+  });  
+</script>
 </body>
 </html>
