@@ -11,9 +11,8 @@ public class Exam0420 {
     int sum;
     float average;
 
-    // 생성자가 한 개라도 있으면 컴파일러는 자동으로 기본 생성자를 만들어주지 않는다.
+    // 생성자가 한 개라도 있으면 컴파일러는 자동으로 기본 생성자를 만들지 않는다.
     //      public Score() {}
-
     Score(String name, int kor, int eng, int math) {
       System.out.println("Score(String,int,int,int) 호출!");
       // 파라미터로 받은 값을 새로 만든 인스턴스 변수에 저장한다.
@@ -24,7 +23,6 @@ public class Exam0420 {
       this.math = math;
       this.compute();
     }
-
     public void compute() {
       this.sum = this.kor + this.eng + this.math;
       this.average = this.sum / 3f;
@@ -51,6 +49,8 @@ public class Exam0420 {
     System.out.printf("%s, %d, %d, %d, %d, %.1f\n",
         s2.name, s2.kor, s2.eng, s2.math, s2.sum, s2.average);
   }
+  
+  
 }
 
 // 생성자?
