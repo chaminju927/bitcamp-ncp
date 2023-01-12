@@ -1,30 +1,26 @@
 package bitcamp.boot.app.controller;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import bitcamp.boot.app.dao.TeacherDao;
 import bitcamp.boot.app.vo.Teacher;
 
-@CrossOrigin(origins = {"http://127.0.0.1:5500", "http://localhost:5500"})
+//@CrossOrigin(origins = {"http://127.0.0.1:5500", "http://localhost:5500"})
 @RestController
 public class TeacherController {
+  @Autowired TeacherDao teacherDao = new TeacherDao();//객체와 그 주소를 자동생성시켜줌, 인스턴스필드에만 사용한다
+  //안붙이면 주소는 주지 않아 null
 
-  TeacherDao teacherDao = new TeacherDao();
 
   @PostMapping("/teachers")
   public Object addTeacher(Teacher teacher) {
-
-    teacher.setCreatedDate(new Date(System.currentTimeMillis()).toString());
 
     this.teacherDao.insert(teacher);
 
@@ -33,7 +29,6 @@ public class TeacherController {
 
     return contentMap;
   }
-
 
   @GetMapping("/teachers")
   public Object getTeachers() {

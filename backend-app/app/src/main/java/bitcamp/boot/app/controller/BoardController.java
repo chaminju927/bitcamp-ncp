@@ -3,7 +3,6 @@ package bitcamp.boot.app.controller;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,10 +17,13 @@ import bitcamp.boot.app.vo.Board;
 // => SpringBoot는 다음 클래스의 인스턴스를 생성해서 보관해 둔다.
 // => "/hello" 라는 URL로 클라이언트 요청이 들어오면 해당 메서드를 호출한다.
 @RestController
-@CrossOrigin(origins = {"http://127.0.0.1:5500", "http://localhost:5500"})  // origins에서 들어오는 요청만 허락한다
+//@CrossOrigin(origins = {"http://127.0.0.1:5500", "http://localhost:5500"})  // origins에서 들어오는 요청만 허락한다
 public class BoardController {        //html origin 서버에서 받아온 데이터 //url이 다수이면 배열 {}에 담기
 
   BoardDao boardDao = new BoardDao();
+  public BoardController(BoardDao boardDao) {
+    this.boardDao  = boardDao;
+  }
 
   //Post요청
   @PostMapping("/boards")     //스프링부트가 호출하는 메서드

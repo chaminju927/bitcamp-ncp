@@ -1,8 +1,10 @@
 package bitcamp.boot.app.dao;
 
 import java.util.Arrays;
+import org.springframework.stereotype.Repository;
 import bitcamp.boot.app.vo.Board;
 
+@Repository
 public class BoardDao {
   private static final int SIZE = 100;
 
