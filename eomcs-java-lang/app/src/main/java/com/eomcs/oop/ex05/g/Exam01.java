@@ -3,7 +3,8 @@ package com.eomcs.oop.ex05.g;
 
 public class Exam01 {
   public static void main(String[] args) {
-    C obj = new C();
+    C obj = new C(); //호출의 시작점은 C이지만, 상속 관계로 인해
+    //super클래스로 거슬러 가서 결국 A부터 실행된다
     System.out.printf("v1=%d, v2=%d, v3=%d\n", obj.v1, obj.v2, obj.v3);
 
     // 생성자 호출 순서

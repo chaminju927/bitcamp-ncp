@@ -20,7 +20,6 @@ public class Car {
     this.maker = maker;
     this.capacity = capacity;
   }
-
   // 새로 생성자를 추가해야 한다.
   public Car(String model, String maker, int capacity,
       boolean sunroof, boolean auto) {
