@@ -11,24 +11,20 @@ public class Exam0440 {
     int sum;
     float average;
 
-    Score() {
+    Score() { //Score 생성자에서 Score(String) 생성자 호출
       // 다른 생성자를 호출할 때는 this()를 사용한다. 일반 메서드에서는 사용 불가.
-      // 단, ****생성자의 첫 문장으로 와야 한다.
-
-      this("이름없음"); // Score(String) 생성자 호출. this는 생성자를 의미. 이름없음은 밑의 name파라미터로
-      System.out.println("Score()");
+      // 단, Score 생성자의 첫 문장으로 와야 한다.
+      this("이름없음"); // this는 생성자를 의미.해당 생성자로 가서 실행
+      System.out.println("Score()");  //출력3번째
     }
 
     Score(String name) {
-      // 다른 생성자를 호출할 때는 this()를 사용한다.
-      // 단, 생성자의 첫 문장으로 와야 한다.
-      this(name, 0, 0, 0); // Score(String, int, int, int) 생성자 호출
-
+      this(name, 0, 0, 0); // Score(String, int, int, int)생성자 호출
       System.out.println("Score(String)");
     }
 
     Score(String name, int kor, int eng, int math) {
-      System.out.println("Score(String,int,int,int) 호출!");
+      System.out.println("Score(String,int,int,int) 호출!");//출력1번
       this.name = name;
       this.kor = kor;
       this.eng = eng;
@@ -51,7 +47,6 @@ public class Exam0440 {
     // 인스턴스 생성 후에 나중에 따로 생성자를 호출할 수 없다!
     //    s1.Score("홍길동", 100, 90, 77); // 컴파일 오류!
     System.out.println("--------------------------------");
-
 
     Score s2 = new Score("유관순");
     System.out.println("--------------------------------");

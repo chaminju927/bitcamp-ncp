@@ -6,7 +6,7 @@ class X {
   // 생성자를 호출할 수 없다.
   // 결국 인스턴스를 생성하지 못하게 만든다.
   private X() {
-    System.out.println("X()");
+    System.out.println("X()"); //출력 안됨
   }
 }
 

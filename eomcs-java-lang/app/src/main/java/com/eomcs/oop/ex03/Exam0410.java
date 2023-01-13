@@ -15,6 +15,9 @@ public class Exam0410 {
     int sum;
     float average;
 
+    Score() {        //=> 생성자
+    	System.out.println("Score()");
+    }
     // 생성자
     // => 클래스 이름과 같은 이름으로 메서드를 만든다.
     // => 리턴 타입을 선언하지 않는다. 즉 값을 리턴하지 않는다.
@@ -25,9 +28,6 @@ public class Exam0410 {
     // => 보통 인스턴스를 만든 후에 인스턴스 변수를 초기화시키는 용도로 정의한다.
     // => **생성된 인스턴스(메모리)가 제대로 쓰일 수 있도록 유효한 값으로 초기화시키는 일(셋팅)을 한다.
     // => 다음과 파라미터가 없는 생성자가 기본 생성자이다.(default constructor)
-    Score() {     //=> 생성자
-      System.out.println("Score()");
-    }
 
 
     public void compute() {

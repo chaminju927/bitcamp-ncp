@@ -88,6 +88,6 @@ dependencies {
 // 'application' 플러그인 설정:
 // => run 명령으로 실행시킬 자바 클래스 이름
 application {
-    mainClass = 'bitcamp.bootapp.App'
+    mainClass = 'bitcamp.boot.app.App'
 }
 
