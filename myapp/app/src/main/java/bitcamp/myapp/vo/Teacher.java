@@ -1,6 +1,7 @@
-package main.java.bitcamp.boot.app.vo;
+package bitcamp.myapp.vo;
 
 public class Teacher extends Member {
+  // Member 클래스의 코드를 사용하겠다고 선언한다.
 
   private String email;
   private int degree;

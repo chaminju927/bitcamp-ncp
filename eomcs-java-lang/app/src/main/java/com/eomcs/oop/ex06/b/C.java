@@ -5,11 +5,9 @@ package com.eomcs.oop.ex06.b;
 public class C {
 
   public void m1() {}
-
   // 메서드를 찾을 때 이름과 파라미터 타입, 개수로 구분하기 때문에
   // 리턴 타입이 다른 것은 구분할 수 없다.
   //  public int m1() {return 0;} // 컴파일 오류!
-
 
   // => 파라미터 타입이 달라야 한다.
   public void m1(float a) {} // OK

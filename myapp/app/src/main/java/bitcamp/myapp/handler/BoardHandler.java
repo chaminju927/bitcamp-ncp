@@ -1,6 +1,5 @@
 package bitcamp.myapp.handler;
 
-import java.sql.Date;
 import bitcamp.myapp.dao.BoardDao;
 import bitcamp.myapp.vo.Board;
 import bitcamp.util.Prompt;
@@ -17,11 +16,9 @@ public class BoardHandler {
 
   private void inputBoard() {
     Board b = new Board();
-    b.setNo(Prompt.inputInt("번호? "));
     b.setTitle(Prompt.inputString("제목? "));
     b.setContent(Prompt.inputString("내용? "));
     b.setPassword(Prompt.inputString("암호? "));
-    b.setCreatedDate(new Date(System.currentTimeMillis()).toString());
 
     this.boardDao.insert(b);
   }
@@ -29,11 +26,12 @@ public class BoardHandler {
   private void printBoards() {
     System.out.println("번호\t제목\t작성일\t조회수");
 
-    Board[] boards = this.boardDao.findAll();
-
-    for (Board b : boards) {             //문법 개념 다시 체크. 배열 처음-끝 돌림
+    Object[] boards = this.boardDao.findAll(); //this.boardDao.findAll()은 object 레퍼런스를 리턴하므로 오류
+    //dao에서 메서드 확인해보기 리턴타입이 object레퍼런스임
+    for (Object obj : boards) {             //문법 개념 다시 체크. 배열 처음-끝 돌림
+      Board b = (Board) obj;
       System.out.printf("%d\t%s\t%s\t%d\n",
-          b.getNo(), b.getTitle(), b.getCreatedDate(), b.getViewCount());
+          b.getNo(), b.getTitle(),  b.getCreatedDate(),  b.getViewCount());
     }
   }
 
@@ -114,10 +112,11 @@ public class BoardHandler {
   }
 
   private void searchBoard() {
-    Board[] boards = this.boardDao.findAll();
+    Object[] boards =  this.boardDao.findAll();
     String keyword = Prompt.inputString("검색어? ");
     System.out.println("번호\t제목\t작성일\t조회수");
-    for (Board b : boards) {
+    for (Object obj : boards) {
+      Board b = (Board) obj;
       if (b.getTitle().indexOf(keyword) != -1 ||
           b.getContent().indexOf(keyword) != -1) {
         System.out.printf("%d\t%s\t%s\t%d\n",

@@ -7,8 +7,8 @@ public class Exam0211 {
     Vehicle v1 = new Sedan();
 
     // model과 capacity 변수는 원래 Vehicle 설계도에 있는 변수이기 때문에
-    // 당연히 레퍼런스를 통해 사용할 수 있다.
-    v1.model = "티코";
+    // 당연히 레퍼런스를 통해 사용할 수 있다. 형변환은 필요 없음!!
+    v1.model = "티코";  //레퍼런스 변수 타입이 vehicle이므로 이 변수로만 접근 가능
     v1.capacity = 5;
 
     // 자바 컴파일러는 레퍼런스의 클래스를 보고 사용할 수 있는 변수/메서드 인지 아닌지

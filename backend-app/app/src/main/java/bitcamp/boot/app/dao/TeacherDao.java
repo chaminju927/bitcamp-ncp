@@ -1,9 +1,9 @@
-package bitcamp.boot.app.dao;
+package main.java.bitcamp.boot.app.dao;
 
 import java.util.Arrays;
 import java.util.Date;
 import org.springframework.stereotype.Repository;
-import bitcamp.boot.app.vo.Teacher;
+import main.java.bitcamp.boot.app.vo.Teacher;
 
 @Repository              //DAO역할을 수행하는 객체에 붙인다
 public class TeacherDao {
