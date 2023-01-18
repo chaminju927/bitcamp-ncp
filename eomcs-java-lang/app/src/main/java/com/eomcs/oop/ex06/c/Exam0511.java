@@ -34,6 +34,10 @@ public class Exam0511 {
     void m1() {
       System.out.println("X4의 m1()");
     }
+
+    void x() {
+      System.out.println("");
+    }
   }
 
   public static void main(String[] args) {
@@ -45,6 +49,8 @@ public class Exam0511 {
     // 실제 레퍼런스가 가리키는 클래스에서 메서드를 찾아 올라간다.
     //
     ((X3)x4).m1();   // X4.m1()
+    ((X3)x4).m2();  // X3.m2()
+    //  ((X3)x4).m1();  //오류
     ((X2)x4).m1();   // X4.m1()
     ((X)x4).m1();    // X4.m1();
 
@@ -52,7 +58,7 @@ public class Exam0511 {
     X2 x2 = x4;
     X x = x4;
 
-    x3.m1();   // X4.m1()
+    x3.m1();   // X4.m1()을 의미
     x2.m1();   // X4.m1()
     x.m1();   // X4.m1()
   }

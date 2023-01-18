@@ -9,11 +9,11 @@ public class Exam0162 {
     String[] obj2 = new String[10];
 
     Class classInfo = obj2.getClass();
-    System.out.println(classInfo.getName()); //[Ljava.lang.String;
+    System.out.println(classInfo.getName()); //[Ljava.lang.String; 배열 이름알아내는것
 
     // 배열 항목의 타입 정보를 가져온다.
-    Class compTypeInfo = classInfo.getComponentType();
-    System.out.println(compTypeInfo.getName()); //java.lang.String
+    Class compTypeInfo = classInfo.getComponentType();//배열 한 항목의 타입 알아낸후
+    System.out.println(compTypeInfo.getName()); //java.lang.String// 그 이름 가져오기
 
     // 값을 한 번 밖에 사용하지 않을 것이라면
     // 위의 경우처럼 한 번씩 호출하고, 리턴 값을 가지고 또 호출하는 방식으로 값을 꺼내지 않는다.

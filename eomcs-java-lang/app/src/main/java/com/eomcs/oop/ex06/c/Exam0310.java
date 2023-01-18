@@ -14,7 +14,7 @@ public class Exam0310 {
   static class C {
     //private 접근 범위:
     //=> 현재 클래스
-    private void m1() {}
+    private void m1() {}  //현재 클래스 C에서만 사용하는 메서드
 
     //(default) 접근 범위:
     //=> 현재 클래스 + 같은 패키지 소속 클래스

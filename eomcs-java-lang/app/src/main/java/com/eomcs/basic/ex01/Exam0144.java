@@ -33,7 +33,7 @@ public class Exam0144 {
     Score s2 = new Score("홍길동", 100, 100, 100);
     Score s3 = new Score("임꺽정", 90, 80, 70);
 
-    System.out.println(s1.hashCode());
+    System.out.println(s1.hashCode()); //셋다 출력값 1000
     System.out.println(s2.hashCode());
     System.out.println(s3.hashCode());
 
@@ -49,10 +49,10 @@ public class Exam0144 {
     //    '디지털 지문'이라고 부른다.
     //
     // hashCode()를 오버라이딩 할 때?
-    // => 인스턴스(메모리)가 다르더라도 같은 데이터를 갖는 경우 
+    // => 인스턴스(메모리)가 다르더라도 같은 데이터를 갖는 경우
     //    같은 것으로 취급하기 위해 이 메서드를 재정의한다.
-    // => 따라서 위의 예처럼 데이터가 같은지 따지지도 않고 
-    //    모든 인스턴스에 대해 같은 해시코드를 리턴하는 것은 
+    // => 따라서 위의 예처럼 데이터가 같은지 따지지도 않고
+    //    모든 인스턴스에 대해 같은 해시코드를 리턴하는 것은
     //    아무 의미없다!
     //    이런 식으로 오버라이딩하는 것은 부질없는 짓이다!
 

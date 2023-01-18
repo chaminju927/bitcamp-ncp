@@ -10,7 +10,7 @@ public class Exam0161 {
     StringBuffer buf = new StringBuffer("Hello");
     System.out.println(buf);
 
-    buf.replace(2, 4, "xxxx");// 원본을 바꾼다.
+    buf.replace(2, 4, "xxxx");// 원본을 바꾼다. "2번에서 4번 전까지(ll)"
     System.out.println(buf);
 
     // println() 메서드에 넘겨주는 파라미터 값이 String 타입이 아닐 경우,

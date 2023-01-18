@@ -10,7 +10,7 @@ public class Exam0161 {
     System.out.println(classInfo.getName()); // java.lang.String
 
     // 배열의 클래스 정보
-    String[] obj2 = new String[10];
+    String[] obj2 = new String[10]; //레퍼런스 배열 만들기
     classInfo = obj2.getClass();
     System.out.println(classInfo.getName()); //[Ljava.lang.String;
 
