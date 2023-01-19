@@ -13,7 +13,7 @@ public class Exam0212 {
   }
 
   // Exception 예외를 던질 경우 반드시 메서드 선언부에 표시해야 한다.
-  static void m2() { // 컴파일 오류!
+  static void m2() throws Exception { //안 던지면 컴파일 오류!
     throw new Exception();
   }
 

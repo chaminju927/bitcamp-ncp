@@ -4,7 +4,7 @@ package com.eomcs.basic.ex02;
 public class Exam0231 {
   public static void main(String[] args) {
 
-    Integer obj1 = Integer.valueOf(100);
+    Integer obj1 = Integer.valueOf(100); //상수풀에 integer 객체 생성
     Integer obj2 = 100;
     System.out.println(obj1 == obj2);
     // auto-boxing이나 valueOf()로 생성한 wrapper 객체는

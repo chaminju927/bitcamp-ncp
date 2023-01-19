@@ -8,7 +8,7 @@ public class Exam0310 {
 
     // Date() 기본 생성자
     Date d1 = new Date(); // 현재 시간을 저장한다.
-    System.out.println(d1);
+    System.out.println(d1); //toString이 자동호출되고 그 리턴값을 호출된다 =>println역할
 
     // Date(long) : 1970-01-01 00:00:00 부터 지금까지 경과된 밀리초
     Date d2 = new Date(1000);
@@ -17,10 +17,10 @@ public class Exam0310 {
     Date d3 = new Date(System.currentTimeMillis());
     System.out.println(d3);
 
-    Date d4 = new Date(121, 0, 15);
+    Date d4 = new Date(123, 0, 19); //1900년 기준 년,월,일
     System.out.println(d4);
 
-    // java.sql.Date
+    // java.sql.Date 실무에서 많이 사용!! java.util.Date와 다른 패키지!
     java.sql.Date d5 = new java.sql.Date(System.currentTimeMillis());
     System.out.println(d5);
 

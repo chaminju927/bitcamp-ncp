@@ -9,17 +9,15 @@ public class Exam0220 {
     // 인스턴스의 담긴 primitive 값을 다시 꺼내는 일("언박싱(unboxing)"이라 부른다)은
     // 매우 불편한다.
 
-    // int ==> Integer
-    int i1 = 100;
+    int i1 = 100;    // int ==> Integer
     Integer obj1 = Integer.valueOf(i1);
 
     // Integer ==> int
-    Integer obj2 = Integer.valueOf(200);
-    int i2 = obj2.intValue();
+    Integer obj2 = Integer.valueOf(200);  //인스턴스 생성먼저=> 박싱
+    int i2 = obj2.intValue();   //값꺼내기 => 언박싱
 
   }
 }
-
 
 
 

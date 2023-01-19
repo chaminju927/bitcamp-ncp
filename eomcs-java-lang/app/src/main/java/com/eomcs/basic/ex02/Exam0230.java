@@ -17,7 +17,7 @@ public class Exam0230 {
     // auto-boxing 으로 Wrapper 객체를 생성할 경우,
     Integer obj3 = 100; // Integer.valueOf(100)
     Integer obj4 = 100; // Integer.valueOf(100);
-    System.out.println(obj3 == obj4); // true
+    System.out.println(obj3 == obj4); // true 주소가 같으니까
     // 설명:
     // => 정수 값이 -128 ~ 127 범위일 경우
     //    자주 사용되는 수이기 때문에
@@ -58,10 +58,12 @@ public class Exam0230 {
 
     // 결론!
     // - wrapper 객체의 값을 비교할 때 == 연산자를 사용하지 말라!
-    // - -128 ~ 127 범위 내의 값이라면 == 연산자를 사용하여 비교할 수도 있지만,
+    // - -128 ~ 127 범위 내의 값(integer)이라면
+    //= 연산자를 사용하여 비교할 수도 있지만,
     //   매번 비교할 때 마다 범위의 유효성을 생각하는 것이 번거롭다.
-    // - 그냥 equals() 메서드를 사용하여 값을 비교하라!
-    // - 더 좋은 방법은 auto-unboxing 하여 primitive type 의 값으로 바꾼후에 == 연산자로 비교하라.
+    // - 그냥 객체를 비교할 땐 equals() 메서드를 사용하여 값을 비교하라!
+    // - 더 좋은 방법은 auto-unboxing 하여
+    //  primitive type 의 값으로 바꾼후에 == 연산자로 비교하라.
   }
 }
 

@@ -25,11 +25,11 @@ public class Exam0224 {
     Member member = new Member();
     member.name = "홍길동";
     member.tel = "010-1111-2222";
-    obj = member; // 다형적 변수 문법에 따라 상위 클래스의 레퍼런스에 저장할 수 있다.
+    obj = member; // 다형적 변수 문법에 따라 상위 클래스(obj)의 레퍼런스에 저장할 수 있다.
 
     // 위의 코드에서 String이나 Member 처럼
     // primitive type의 값을 객체로 다룰 수 있다.
-    int i = 100;
+    int i = 100; //int는 객체가 아니다!
     obj = i; // auto-boxing 규칙에 따라 Integer.valueOf(i) 문장으로 변환한다.
 
     // obj 레퍼런스에 들어 있는 값이

@@ -9,11 +9,11 @@ public class Exam0223 {
 
     printInt(obj);
     // 컴파일러가 printInt(obj.intValue())로 바꾼다.
-    // 즉 "오토 언박싱"을 수행한다.
+    // 즉 "오토 언박싱"을 수행한다. => 인트값을 뽑아낸다
 
-    printObject(i1);
+    printObject(i1); // => integer 값이 필요함
     // 컴파일러가 printObject(Integer.valueOf(100)) 으로 바꾼다.
-    // 즉 "오토 박싱"을 수행한다.
+    // 즉 "오토 박싱"을 수행한다. (int 값을 객체로 포장한다.)
   }
 
   static void printInt(int value) {

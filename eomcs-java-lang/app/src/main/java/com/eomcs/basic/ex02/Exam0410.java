@@ -12,9 +12,23 @@ public class Exam0410 {
     //    c1 = new Calendar(); // 컴파일 오류!
 
     // Calendar는 인스턴스 생성을 도와주는 별도의 클래스 메서드(스태틱 메서드)를 제공한다.
-    c1 = Calendar.getInstance();
-    System.out.println(c1.get(Calendar.YEAR));
+    c1 = Calendar.getInstance(); //getInstance는 달력 객체를 대신 생성 => 팩토리 메서드 패턴
+    //캘린더 클래스 파일에서 확인하기
+    System.out.println(c1.get(1)); //캘린더 객체 c1에서 년도 출력
+    System.out.println(c1.get(2)+1); // 월 출력. 0부터 시작하므로 +1하기
+    System.out.println(c1.get(5)); // 일 출력
+    System.out.println(c1.get(9)); // 오전(0) 오후 출력
+    System.out.println(c1.get(10));  //시간 출력
+    System.out.println(c1.get(12)); // 분 출력
+    System.out.println(c1.get(13));   // 초 출력
 
+    System.out.println(c1.get(Calendar.YEAR));
+    System.out.println(c1.get(Calendar.MONTH)+1);
+    System.out.println(c1.get(Calendar.DATE));
+    System.out.println(c1.get(Calendar.HOUR));
+    System.out.println(c1.get(Calendar.AM_PM));
+    System.out.println(c1.get(Calendar.MINUTE));
+    System.out.println(c1.get(Calendar.SECOND));
   }
 }
 
