@@ -24,7 +24,7 @@ public class App {
     loop: while (true) {
       System.out.println("1. 학생관리");
       System.out.println("2. 강사관리");
-      System.out.println("4. 게시판");
+      System.out.println("3. 게시판");
       System.out.println("9. 종료");
 
       //예외처리하기

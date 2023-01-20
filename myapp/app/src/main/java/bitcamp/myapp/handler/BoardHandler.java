@@ -26,12 +26,12 @@ public class BoardHandler {
   private void printBoards() {
     System.out.println("번호\t제목\t작성일\t조회수");
 
-    Object[] boards = this.boardDao.findAll(); //this.boardDao.findAll()은 object 레퍼런스를 리턴하므로 오류
-    //dao에서 메서드 확인해보기 리턴타입이 object레퍼런스임
-    for (Object obj : boards) {             //문법 개념 다시 체크. 배열 처음-끝 돌림
+    Object[] boards = this.boardDao.findAll();
+
+    for (Object obj : boards) {
       Board b = (Board) obj;
       System.out.printf("%d\t%s\t%s\t%d\n",
-          b.getNo(), b.getTitle(),  b.getCreatedDate(),  b.getViewCount());
+          b.getNo(), b.getTitle(), b.getCreatedDate(), b.getViewCount());
     }
   }
 
@@ -106,13 +106,15 @@ public class BoardHandler {
       System.out.println("삭제 취소했습니다.");
       return;
     }
+
     this.boardDao.delete(b);
 
     System.out.println("삭제했습니다.");
+
   }
 
   private void searchBoard() {
-    Object[] boards =  this.boardDao.findAll();
+    Object[] boards = this.boardDao.findAll();
     String keyword = Prompt.inputString("검색어? ");
     System.out.println("번호\t제목\t작성일\t조회수");
     for (Object obj : boards) {

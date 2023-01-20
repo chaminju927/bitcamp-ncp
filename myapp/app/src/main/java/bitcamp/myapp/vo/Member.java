@@ -30,4 +30,6 @@ public class Member {
   public void setCreatedDate(String createdDate) {
     this.createdDate = createdDate;
   }
+
+
 }

@@ -6,12 +6,9 @@ import bitcamp.util.Prompt;
 
 public class StudentHandler {
 
-  // 모든 인스턴스가 공유하는 데이터를 스태틱 필드로 만든다.
-  // 특히 데이터를 조회하는 용으로 사용하는 final 변수는 스태틱 필드로 만들어야 한다.
   private StudentDao memberDao = new StudentDao();
   private String title;
 
-  // 인스턴스를 만들 때 프롬프트 제목을 반드시 입력하도록 강제한다.
   public StudentHandler(String title) {
     this.title = title;
   }
@@ -31,6 +28,7 @@ public class StudentHandler {
   }
 
   private void printMembers() {
+
     Object[] members = this.memberDao.findAll();
 
     System.out.println("번호\t이름\t전화\t재직\t전공");
@@ -51,7 +49,7 @@ public class StudentHandler {
 
     System.out.printf("    이름: %s\n", m.getName());
     System.out.printf("    전화: %s\n", m.getTel());
-    System.out.printf("우편번호: %s\n", m.getPostNo());
+    System.out.printf("우편번호: %s\n", m.getNo());
     System.out.printf("기본주소: %s\n", m.getBasicAddress());
     System.out.printf("상세주소: %s\n", m.getDetailAddress());
     System.out.printf("재직여부: %s\n", m.isWorking() ? "예" : "아니오");
@@ -71,12 +69,12 @@ public class StudentHandler {
   }
 
   private void modifyMember() {
-    int memberNo = Prompt.inputInt("학생번호? ");
+    int memberNo = Prompt.inputInt("회원번호? ");
 
     Student old = this.memberDao.findByNo(memberNo);
 
     if (old == null) {
-      System.out.println("해당 번호의 학생이 없습니다.");
+      System.out.println("해당 번호의 회원이 없습니다.");
       return;
     }
 
@@ -101,9 +99,7 @@ public class StudentHandler {
 
     String str = Prompt.inputString("정말 변경하시겠습니까?(y/N) ");
     if (str.equalsIgnoreCase("Y")) {
-
       this.memberDao.update(m);
-
       System.out.println("변경했습니다.");
     } else {
       System.out.println("변경 취소했습니다.");
@@ -126,11 +122,31 @@ public class StudentHandler {
       System.out.println("삭제 취소했습니다.");
       return;
     }
+
     memberDao.delete(m);
+
     System.out.println("삭제했습니다.");
+
   }
 
+  private void searchMember() {
 
+    Object[] members = this.memberDao.findAll();
+
+    String name = Prompt.inputString("이름? ");
+
+    System.out.println("번호\t이름\t전화\t재직\t전공");
+
+    for (Object obj : members) {
+      Student m = (Student) obj;
+      if (m.getName().equalsIgnoreCase(name)) {
+        System.out.printf("%d\t%s\t%s\t%s\t%s\n",
+            m.getNo(), m.getName(), m.getTel(),
+            m.isWorking() ? "예" : "아니오",
+                getLevelText(m.getLevel()));
+      }
+    }
+  }
 
   public void service() {
     while (true) {
@@ -142,8 +158,14 @@ public class StudentHandler {
       System.out.println("5. 삭제");
       System.out.println("6. 검색");
       System.out.println("0. 이전");
-      int menuNo = Prompt.inputInt(String.format("%s> ", this.title));
 
+      int menuNo;
+      try {
+        menuNo = Prompt.inputInt(String.format("%s> ", this.title));
+      } catch (Exception e) {
+        System.out.println("메뉴 번호가 옳지 않습니다.");
+        continue;
+      }
 
       try {
         switch (menuNo) {
@@ -153,11 +175,12 @@ public class StudentHandler {
           case 3: this.printMember(); break;
           case 4: this.modifyMember(); break;
           case 5: this.deleteMember(); break;
+          case 6: this.searchMember(); break;
           default:
             System.out.println("잘못된 메뉴 번호 입니다.");
         }
       } catch (Exception e) {
-        System.out.printf("명령 실행 중 오류 발생 ! - %s : %s\n",
+        System.out.printf("명령 실행 중 오류 발생! - %s : %s\n",
             e.getMessage(),
             e.getClass().getSimpleName());
       }
