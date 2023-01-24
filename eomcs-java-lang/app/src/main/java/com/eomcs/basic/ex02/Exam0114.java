@@ -13,7 +13,7 @@ public class Exam0114 {
     // - 지정된 String 객체를 상수풀에서 찾는다.
     // - 있으면 그 String 객체의 주소를 리턴한다.
     // - 없으면 상수풀에 String 객체를 생성한 후 그 주소를 리턴한다.
-    String s3 = s1.intern();
+    String s3 = s1.intern(); //인스턴스만 있고 상수풀에는 없으므로 새로 생성
 
     System.out.println(s1 == s2);
     System.out.println(s2 == s3);

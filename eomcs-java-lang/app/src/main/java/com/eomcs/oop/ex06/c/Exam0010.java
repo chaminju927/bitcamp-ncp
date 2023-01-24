@@ -12,7 +12,7 @@ public class Exam0010 {
     int sum;
     float aver;
 
-    public void compute() {
+    public void compute() {        //compute는 music art과목은 고려 x
       this.sum = this.kor + this.eng + this.math;
       this.aver = this.sum / 3f;
     }
@@ -39,9 +39,9 @@ public class Exam0010 {
 
     // 합계와 평균이 틀린 이유?
     // - 새로 추가한 필드에 맞춰서 계산을 해야 하는데
-    //   수퍼클래스의 compute() 메서드는 
-    //   음악(music)과 미술(art) 점수를 고려하지 않고 
-    //   기존 방식으로 계산하기 때문에 
-    //   합계와 평균이 올바르지 않다.
+    //   수퍼클래스의 compute() 메서드는
+    //   음악(music)과 미술(art) 점수를 고려하지 않고
+    //   기존 방식으로 계산하기 때문에
+    //   합계와 평균이 올바르지 않다. ==> 재정의 필요 (overriding)
   }
 }

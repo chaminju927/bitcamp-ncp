@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /.classpath
 /.project
 /.settings/
@@ -17,3 +18,9 @@
 /Hello3.class
 /Hello4.class
 /ex04/
+=======
+/Hello.class
+/Hello2.class
+/Test.class
+/com/
+>>>>>>> d7a2983d627c2eb203690a46cbf8bd9d30bff8a6

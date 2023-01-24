@@ -1,5 +1,9 @@
 #
+<<<<<<< HEAD:backend-app/app/.settings/org.eclipse.jdt.core.prefs
 #Fri Jan 13 22:03:16 KST 2023
+=======
+#Tue Jan 17 10:35:11 KST 2023
+>>>>>>> d7a2983d627c2eb203690a46cbf8bd9d30bff8a6:myapp/app/.settings/org.eclipse.jdt.core.prefs
 org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
 org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
 org.eclipse.jdt.core.compiler.codegen.targetPlatform=17

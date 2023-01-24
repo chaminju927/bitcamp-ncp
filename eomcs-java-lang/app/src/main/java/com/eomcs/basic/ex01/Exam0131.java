@@ -1,7 +1,5 @@
-// Object 클래스 - equals() 오버라이딩 
+// Object 클래스 - equals() 오버라이딩
 package com.eomcs.basic.ex01;
-
-import java.util.Objects;
 
 public class Exam0131 {
 
@@ -23,7 +21,7 @@ public class Exam0131 {
     obj2.working = false;
 
     System.out.println(obj1 == obj2);
-    System.out.println(obj1.equals(obj2));
+    System.out.println(obj1.equals(obj2));  //object클래스의 string에서 overriding된 equals
 
     // 결론!
     // => Object에서 상속 받은 것을 그대로 사용하면 equals()는 인스턴스가 같은지 비교한다.
@@ -40,19 +38,19 @@ public class Exam0131 {
     int gender;
     boolean working;
 
-    @Override
-    public boolean equals(Object obj) {
-      if (this == obj)
-        return true;
-      if (obj == null)
-        return false;
-      if (getClass() != obj.getClass())
-        return false;
-      My other = (My) obj;
-      return age == other.age && Objects.equals(email, other.email) && gender == other.gender
-          && Objects.equals(name, other.name) && Objects.equals(tel, other.tel)
-          && working == other.working;
-    }
+    //    @Override         //source에서 자동완성
+    //    public boolean equals(Object obj) { //원래는 주소가 같아야 true지만
+    //      if (this == obj)      //필드가 같으면 true 되도록 재정의
+    //        return true;
+    //      if (obj == null)
+    //        return false;
+    //      if (getClass() != obj.getClass())
+    //        return false;
+    //      My other = (My) obj;
+    //      return age == other.age && Objects.equals(email, other.email) && gender == other.gender
+    //          && Objects.equals(name, other.name) && Objects.equals(tel, other.tel)
+    //          && working == other.working;
+    //    }
 
   }
 

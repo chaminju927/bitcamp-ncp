@@ -12,7 +12,7 @@ public class Exam0110 {
     // - 힙에 Hello 문자 코드를 저장할 메모리를 만들고 그 주소를 리턴한다.
     // - 내용물의 동일 여부를 검사하지 않고 무조건 인스턴스를 생성한다.
     // - 가비지가 되면 가비지 컬렉터에 의해 제거된다.
-    s1 = new String("Hello");
+    s1 = new String("Hello");  //string 인스턴스를 힙 영역에 만든다
     String s2 = new String("Hello");
 
     // 인스턴스가 같은지를 비교해보면,

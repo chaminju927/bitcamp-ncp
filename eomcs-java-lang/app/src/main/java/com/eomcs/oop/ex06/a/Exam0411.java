@@ -10,7 +10,6 @@ public class Exam0411 {
     System.out.printf("cc: %d\n", sedan.cc);
     System.out.println("-------------------------");
   }
-
   public static void printTruck(Truck truck) {
     System.out.printf("모델명: %s\n", truck.model);
     System.out.printf("cc: %d\n", truck.cc);

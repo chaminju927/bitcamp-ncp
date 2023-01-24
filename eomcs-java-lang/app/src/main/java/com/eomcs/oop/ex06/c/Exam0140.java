@@ -31,7 +31,7 @@ public class Exam0140 {
       System.out.println("A4.print():");
       System.out.printf("  => this.name(%s)\n", this.name);
       System.out.printf("  => this.tel(%s)\n", this.tel);
-      System.out.printf("  => this.working(%s)\n", this.working);
+      System.out.printf("  => this.working(%s)\n", this.working);  //this가 있으므로 현재 해당되는 클래스의 필드 먼저
       System.out.printf("  => super.working(%b)\n", super.working);
     }
   }
@@ -44,7 +44,7 @@ public class Exam0140 {
     //    obj.working = true; // A4의 working : obj의 클래스에서 먼저 필드를 찾기 때문이다.
     obj.working = "취업";
 
-    obj.print(); // A4의 print() 호출 : A4에서 상속 받은 print()를 재정의 했기 때문이다. 
+    obj.print(); // A4의 print() 호출 : A4에서 상속 받은 print()를 재정의 했기 때문이다.
 
   }
 }

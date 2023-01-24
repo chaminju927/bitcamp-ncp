@@ -16,7 +16,7 @@ public class Exam0421 {
   }
 
   static class X2 extends X {
-    @Override void m1() {System.out.println("X2의 m1()");}
+    @Override void m1() {System.out.println("X2의 m1()");} //두번째 출력
   }
 
   static class X3 extends X2 {
@@ -41,10 +41,9 @@ public class Exam0421 {
 
   public static void main(String[] args) {
     X5 obj = new X5();
-    obj.test();
-  }
-}
-
+    obj.test(); //test()는 x4에서 정의됐지만 실제로 실행되는 클래스는 x5
+  }//this는 해당된 클래스부터 찾고 없으면 한단계씩 수퍼로 올라가서 찾는다
+} //super는 현재 메서드가 소속된 클래스의 super로 가서 찾는다
 
 
 

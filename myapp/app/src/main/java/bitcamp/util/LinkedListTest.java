@@ -10,11 +10,18 @@ public class LinkedListTest {
     String tel;
 
     public Member(int no, String name, String tel) {
+<<<<<<< HEAD
       this.no = no;
       this.name = name;
       this.tel = tel;
     }
 
+=======
+      this.no= no;
+      this.name = name;
+      this.tel = tel;
+    }
+>>>>>>> d7a2983d627c2eb203690a46cbf8bd9d30bff8a6
     @Override
     public String toString() {
       return "Member [no=" + no + ", name=" + name + ", tel=" + tel + "]";
@@ -36,8 +43,11 @@ public class LinkedListTest {
       Member other = (Member) obj;
       return no == other.no;
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> d7a2983d627c2eb203690a46cbf8bd9d30bff8a6
   }
 
   public static void main(String[] args) {
@@ -49,6 +59,10 @@ public class LinkedListTest {
     list.add(new Member(4, "ddd", "4444"));
     print(list);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d7a2983d627c2eb203690a46cbf8bd9d30bff8a6
     //    System.out.println(list.remove(new Member(3, null, null)));
     //    print(list);
     //    System.out.println(list.remove(new Member(4, null, null)));
@@ -67,16 +81,27 @@ public class LinkedListTest {
     list.set(3, new Member(4, "dddx", "4444x"));
     print(list);
     list.set(4, new Member(4, "dddx", "4444x"));
+<<<<<<< HEAD
 
 
   }
 
   static void print(LinkedList list) {
     System.out.println("------------------------------------------------");
+=======
+  }
+
+
+  static void print(LinkedList list) {
+    System.out.println("-------------------");
+>>>>>>> d7a2983d627c2eb203690a46cbf8bd9d30bff8a6
     for (Object obj : list.toArray()) {
       System.out.println(obj);
     }
   }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> d7a2983d627c2eb203690a46cbf8bd9d30bff8a6
 }

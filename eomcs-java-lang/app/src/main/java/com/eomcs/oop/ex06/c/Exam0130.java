@@ -6,13 +6,16 @@ public class Exam0130 {
   static class A {
     String name;
     String tel;
-    boolean working;
+    boolean working; //불린타입의 메모리가 0으로 셋팅될때는 false
 
     void print() {
       System.out.println("A.print():");
       System.out.printf("  => this.name(%s)\n", this.name);
       System.out.printf("  => this.tel(%s)\n", this.tel);
       System.out.printf("  => this.working(%s)\n", this.working);
+      //인스턴스 필드를 찾을 때 :
+      // this => 메서드가 소속된 클래스의 필드부터 찾아 올라간다
+      // super => 메서드가 소속된 클래스의 수퍼클래스 필드부터 찾아 올라간다.
     }
   }
 
@@ -21,22 +24,33 @@ public class Exam0130 {
     // - 필드 오버라이딩은 메서드와 달리 변수의 타입이 달라도 된다.
     //
     String working;
+    void print2() {
+      System.out.println("A.print():");
+      System.out.printf("  => this.name(%s)\n", this.name);
+      System.out.printf("  => this.tel(%s)\n", this.tel);
+      System.out.printf("  => this.working(%s)\n", this.working);
+    }
   }
 
 
   public static void main(String[] args) {
     A4 obj = new A4();
-    obj.name = "홍길동"; // A의 name
+    obj.name = "홍길동"; // A클래스의 (설계도에 있는) name. A의 name인스턴스 필드
     obj.tel = "1111-1111"; // A의 tel
     //    obj.working = true; // A4의 working : obj의 클래스에서 먼저 필드를 찾기 때문이다.
     obj.working = "취업";
 
+
     obj.print();
-    // A의 print() 호출 
+    // A의 print() 호출
     // - A4 가 오버라이딩 한 필드를 사용하지 않는다.
     // - 필드 오버라이딩은 그냥 새 필드를 추가한 것과 같다.
-    // - 가능한 수퍼 클래스의 필드와 같은 이름을 가진 필드를 만들지 말라!
+    // - 가능한 수퍼 클래스의 필드와 "같은 이름을 가진 필드를 만들지 말라!"
+    // - A 클래스의 메서드에서는 A 설계도에 따라 만든 필드를 사용한다
 
+    System.out.println("-----------");
 
+    obj.print2();
+    // - A4 클래스의 메서드에서는 A4설계도에 따라 만든 필드를 먼저 찾는다.
   }
 }

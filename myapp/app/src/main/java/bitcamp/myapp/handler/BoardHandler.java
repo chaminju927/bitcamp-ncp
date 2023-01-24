@@ -1,6 +1,5 @@
 package bitcamp.myapp.handler;
 
-import java.sql.Date;
 import bitcamp.myapp.dao.BoardDao;
 import bitcamp.myapp.vo.Board;
 import bitcamp.util.LinkedList;
@@ -16,11 +15,19 @@ public class BoardHandler {
 	    this.title = title;
 	  }
 
+<<<<<<< HEAD
 	  private void inputBoard() {
 	    Board b = new Board();
 	    b.setTitle(Prompt.inputString("제목? "));
 	    b.setContent(Prompt.inputString("내용? "));
 	    b.setPassword(Prompt.inputString("암호? "));
+=======
+  private void inputBoard() {
+    Board b = new Board();
+    b.setTitle(Prompt.inputString("제목? "));
+    b.setContent(Prompt.inputString("내용? "));
+    b.setPassword(Prompt.inputString("암호? "));
+>>>>>>> d7a2983d627c2eb203690a46cbf8bd9d30bff8a6
 
 	    this.boardDao.insert(b);
 	  }
@@ -28,6 +35,7 @@ public class BoardHandler {
 	  private void printBoards() {
 	    System.out.println("번호\t제목\t작성일\t조회수");
 
+<<<<<<< HEAD
 	    Board[] boards = this.boardDao.findAll();
 
 	    for (Board b : boards) {
@@ -35,6 +43,16 @@ public class BoardHandler {
 	          b.getNo(), b.getTitle(), b.getCreatedDate(), b.getViewCount());
 	    }
 	  }
+=======
+    Object[] boards = this.boardDao.findAll();
+
+    for (Object obj : boards) {
+      Board b = (Board) obj;
+      System.out.printf("%d\t%s\t%s\t%d\n",
+          b.getNo(), b.getTitle(), b.getCreatedDate(), b.getViewCount());
+    }
+  }
+>>>>>>> d7a2983d627c2eb203690a46cbf8bd9d30bff8a6
 
 	  private void printBoard() {
 	    int boardNo = Prompt.inputInt("게시글 번호? ");
@@ -102,6 +120,7 @@ public class BoardHandler {
 	      return;
 	    }
 
+<<<<<<< HEAD
 	    String str = Prompt.inputString("정말 삭제하시겠습니까?(y/N) ");
 	    if (!str.equalsIgnoreCase("Y")) {
 	      System.out.println("삭제 취소했습니다.");
@@ -111,6 +130,33 @@ public class BoardHandler {
 	    this.boardDao.delete(b);
 
 	    System.out.println("삭제했습니다.");
+=======
+    String str = Prompt.inputString("정말 삭제하시겠습니까?(y/N) ");
+    if (!str.equalsIgnoreCase("Y")) {
+      System.out.println("삭제 취소했습니다.");
+      return;
+    }
+
+    this.boardDao.delete(b);
+
+    System.out.println("삭제했습니다.");
+
+  }
+
+  private void searchBoard() {
+    Object[] boards = this.boardDao.findAll();
+    String keyword = Prompt.inputString("검색어? ");
+    System.out.println("번호\t제목\t작성일\t조회수");
+    for (Object obj : boards) {
+      Board b = (Board) obj;
+      if (b.getTitle().indexOf(keyword) != -1 ||
+          b.getContent().indexOf(keyword) != -1) {
+        System.out.printf("%d\t%s\t%s\t%d\n",
+            b.getNo(), b.getTitle(), b.getCreatedDate(), b.getViewCount());
+      }
+    }
+  }
+>>>>>>> d7a2983d627c2eb203690a46cbf8bd9d30bff8a6
 
 	  }
 

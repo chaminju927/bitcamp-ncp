@@ -13,7 +13,7 @@ public class Exam0120 {
 
     My obj = new My();
 
-    // Object에서 상속 받은 메서드 
+    // Object에서 상속 받은 메서드
     //
     // 1) toString()
     //    - 클래스 정보를 간단히 출력한다.
@@ -34,7 +34,7 @@ public class Exam0120 {
     // - hashCode()를 재정의하지 않고 원래 메서드를 그대로 사용하면
     //   무조건 인스턴스마다 새 해시값이 부여된다.
 
-    My obj2 = new My();
+    My obj2 = new My();   //두 인스턴스 값이 다르므로 false
     My obj3 = new My();
 
     System.out.println(obj2 == obj3);

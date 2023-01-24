@@ -17,9 +17,9 @@ public class Exam0421 {
       throw new IOException();
   }
 
-  // 메서드 안에서 발생하는 예외에 대해 
-  // 메서드 선언부에 모두 적지 않고, 
-  // 그 예외들의 공통 분모에 해당하는 수퍼 클래스만 적어도 된다.
+  // 메서드 안에서 발생하는 예외에 대해
+  // 메서드 선언부에 모두 적지 않고,
+  // 그 예외들의 공통 분모에 해당하는 수퍼 클래스(Exception)만 적어도 된다.
   public static void main(String[] args) throws Exception {
     m(1);
   }

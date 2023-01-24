@@ -4,11 +4,11 @@ package com.eomcs.basic.ex02;
 public class Exam0212 {
   public static void main(String[] args) {
 
-    Long obj1 = Long.valueOf(100L);
+    Long obj1 = Long.valueOf(100L);    //포장할때는 데이터종류.valueOf()
     Double obj2 = Double.valueOf(3.14);
     Boolean obj3 = Boolean.valueOf(true);
 
-    long l = obj1.longValue();
+    long l = obj1.longValue();       //꺼낼때는 데이터종류Value()
     double d = obj2.doubleValue();
     boolean bool = obj3.booleanValue();
 

@@ -10,8 +10,9 @@ public class Exam0222 {
     //
     // 즉 Wrapper 객체의 값을 primitive data type 변수에 직접 할당할 수 있다.
     //
-    Integer obj = Integer.valueOf(300);
-    int i = obj; // ==> obj.intValue()
+    Integer obj = Integer.valueOf(300); //Integer 객체 생성
+    int i = obj; // ==> obj.intValue() //i는 레퍼런스가 아닌데 주소로 저장된 이유?
+    //=> 컴파일러가 언박싱 코드로 바꿔서 값을 뽑아냄
 
     // obj에 저장된 것은 int 값이 아니라 Integer 객체의 주소인데 어떻게 가능한가?
     // => 내부적으로 obj.intValue() 호출 코드로 바뀐다.

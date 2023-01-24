@@ -18,7 +18,7 @@ public class Exam0430 {
 
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) {  //메인에서 던지지 말자!
     // 예외 처리 방법 2:
     // - try ~ catch 를 사용하여 코드 실행 중에 발생된 예외를 중간에 가로챈다.
     //
