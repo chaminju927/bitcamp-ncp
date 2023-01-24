@@ -1,54 +1,58 @@
 package bitcamp.myapp.dao;
 
-import java.util.Arrays;
+import java.util.Date;
 import bitcamp.myapp.vo.Board;
+import bitcamp.util.List;
 
 public class BoardDao {
-  private static final int SIZE = 100;
 
-  private int count;
-  private Board[] boards = new Board[SIZE];  //boards는 객체 주소를 담는 레퍼런스들의 배열
+	  // 특정 클래스를 지정하기 보다는
+	  // 인터페이스를 통해 관계를 느슨하게 만든다.
+	  List list;
 
-  public void insert(Board board) {
-    this.boards[this.count++] = board;
-  }
-  public Board[] findAll() {
-    // 배열의 값 복제하기
-    //    Board[] arr = new Board[this.count];  //count갯수만큼만 배열 가져오기
-    //    for (int i = 0; i < this.count; i++) {
-    //      arr[i] = this.boards[i];
-    //    }
-    //    return arr;
+	  public BoardDao(List list) {
+	    // List 규칙에 따라서 만든 객체를 외부에서 주입받는다.
+	    // 이렇게 하면 이 클래스는 ArrayList 또는 LinkedList와 같은
+	    // 특정 클래스와 관계가 없어진다.
+	    this.list = list;
+	  }
 
-    return Arrays.copyOf(boards, count);
-  }         //위 코드와 같다!!count갯수만큼 boards 배열에서 복사해옴
+	  int lastNo;
 
-  public Board findByNo(int no) {
-    for (int i = 0; i < this.count; i++) {
-      if (this.boards[i].getNo() == no) {    //boards[i]의 주소로 가서 getNo()
-        return this.boards[i];
-      }
-    }
-    return null;
-  }
+	  public void insert(Board board) {
+	    board.setNo(++lastNo);
+	    board.setCreatedDate(new Date(System.currentTimeMillis()).toString());
+	    list.add(board);
+	  }
 
-  public void update(Board board) {
-    this.boards[this.indexOf(board)] = board;
-  }
+	  public Board[] findAll() {
+	    Board[] boards = new Board[list.size()];
+	    Object[] arr = list.toArray();
+	    for (int i = 0; i < boards.length; i++) {
+	      boards[i] = (Board) arr[i];
+	    }
+	    return boards;
+	  }
 
-  public void delete(Board board) {
-    for (int i = this.indexOf(board) + 1; i < this.count; i++) {
-      this.boards[i - 1] = this.boards[i];
-    }
-    this.boards[--this.count] = null; // 레퍼런스 카운트를 줄인다.
-  }
+	  public Board findByNo(int no) {
+	    Board b = new Board();
+	    b.setNo(no);
 
-  private int indexOf(Board b) {
-    for (int i = 0; i < this.count; i++) {
-      if (this.boards[i].getNo() == b.getNo()) {
-        return i;
-      }
-    }
-    return -1;
-  }
-}
+	    int index = list.indexOf(b);
+	    if (index == -1) {
+	      return null;
+	    }
+
+	    return (Board) list.get(index);
+	  }
+
+	  public void update(Board b) {
+	    int index = list.indexOf(b);
+	    list.set(index, b);
+	  }
+
+	  public boolean delete(Board b) {
+	    return list.remove(b);
+	  }
+	}
+

@@ -1,5 +1,7 @@
 package bitcamp.myapp.vo;
 
+import java.util.Objects;
+
 // 회원 데이터를 담을 메모리를 설계한다.
 public class Member {
   private int no; // 필드
@@ -13,7 +15,26 @@ public class Member {
   private byte level;
   private String createdDate;
 
-  public int getNo() {
+  
+  
+  @Override
+public int hashCode() {
+	return Objects.hash(no);
+}
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Member other = (Member) obj;
+	return no == other.no;
+}
+
+
+public int getNo() {
     return no;
   }
   public void setNo(int no) {

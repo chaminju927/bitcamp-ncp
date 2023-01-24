@@ -1,4 +1,4 @@
-package bitcamp.boot.app.config;
+package main.java.bitcamp.boot.app.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
