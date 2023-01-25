@@ -1,37 +1,13 @@
 package bitcamp.myapp.vo;
 
-<<<<<<< HEAD
-import java.util.Objects;
-
 // 회원 데이터를 담을 메모리를 설계한다.
-=======
->>>>>>> d7a2983d627c2eb203690a46cbf8bd9d30bff8a6
 public class Member {
   private int no;
   private String name;
   private String tel;
   private String createdDate;
 
-  
-  
-  @Override
-public int hashCode() {
-	return Objects.hash(no);
-}
-@Override
-public boolean equals(Object obj) {
-	if (this == obj)
-		return true;
-	if (obj == null)
-		return false;
-	if (getClass() != obj.getClass())
-		return false;
-	Member other = (Member) obj;
-	return no == other.no;
-}
-
-
-public int getNo() {
+  public int getNo() {
     return no;
   }
   public void setNo(int no) {

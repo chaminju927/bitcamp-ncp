@@ -3,7 +3,7 @@ package bitcamp.util;
 import java.util.Arrays;
 
 public class ArrayList implements List {
-
+  // student, teacher는 정보 조회가 용이하도록 배열 방식으로 변경
   private static final int SIZE = 3;
   private int count;
   protected Object[] objects = new Object[SIZE];
@@ -63,6 +63,13 @@ public class ArrayList implements List {
       }
     }
     return -1;
+  }
+  @Override
+  public Iterator iterator() {
+    // 이 ArrayList 객체에서 값을 꺼내는 일을 할
+    // Iterator 구현체를 만들어 리턴한다.
+    return new ListIterator(this);   //=> dao에서 사용한다
+
   }
 
 }

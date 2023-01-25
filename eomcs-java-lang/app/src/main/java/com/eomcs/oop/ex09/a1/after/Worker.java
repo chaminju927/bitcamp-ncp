@@ -7,6 +7,7 @@ package com.eomcs.oop.ex09.a1.after;
 //    interface 사용규칙명 {...}
 //
 public interface Worker {
+  void execute();
 
   // 호출 규칙?
   // => 메서드 형식을 의미한다.
@@ -19,6 +20,5 @@ public interface Worker {
   // => public 외에 다른 접근 범위는 사용할 수 없다.
   //    (규칙은 공개되어야 하니까!)
   //
-  void execute();
   //=> public abstract void execute();
 }
