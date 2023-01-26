@@ -21,5 +21,5 @@ public class Exam0110 {
     while (iterator.hasNext()) {
       System.out.println(iterator.next());
     }
-  }
+  }//인터페이스 규칙에 따라 사용/호출하는 입장
 }

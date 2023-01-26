@@ -8,7 +8,6 @@ public class Exam0311 {
     //    private class A1 {} // 컴파일 오류!
     //    protected class A2 {} // 컴파일 오류!
     //    public class A3 {} // 컴파일 오류!
-
     class A4 {} // OK!
   }
 

@@ -8,7 +8,6 @@ class B2 {
   void m2() {
     System.out.println("B2.v2 = " + this.v2);
   }
-
   class X {
     // 바깥 객체의 주소를 저장할 빌트인 필드
     //    B2 this$0;
@@ -17,7 +16,6 @@ class B2 {
     //    public X(B2 p) {
     //      this.this$0 = p;
     //    }
-
     void test() {
       // 바깥 객체의 인스턴스 멤버에 접근하려면,
       // inner 객체에 보관된 바깥 객체 주소를 사용해야 한다.
@@ -26,9 +24,9 @@ class B2 {
       // 그래서 자바는 inner 객체에 보관된 바깥 객체를 가리키는 문법을 제공하고 있다.
       // =>   바깥클래스명.this
       // 위의 문법을 이용하여 바깥 객체에 접근할 수 있다.
-      // 즉 inner 객체를 만들 때 사용한 바깥 객체에 접근하고 싶다면 
+      // 즉 inner 객체를 만들 때 사용한 바깥 객체에 접근하고 싶다면
       // =>  B2.this  문법을 사용하라!
-      // 
+      //
       System.out.println(B2.this.v2); // ---> this$0.v2
       B2.this.m2();
     }
@@ -55,7 +53,7 @@ public class Exam0220 {
     inner2.test();
 
     B2 outer3 = null;
-    B2.X inner3 = outer3.new X(); 
+    B2.X inner3 = outer3.new X();
   }
 
 }

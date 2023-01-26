@@ -35,6 +35,7 @@ class MyInterface4Impl implements MyInterface4 {
     // 인터페이스에 선언된 오버라이딩 전의 default 메서드를 호출하고 싶다면,
     // super.m2();  //수퍼 클래스(Object)에서 m2()를 찾아 올라간다. Object에는 m2()가 없으므로 컴파일오류
     // MyInterface4.m(); //m2()는 인스턴스(논스태틱)메서드이므로 인터페이스 이름으로 직접 호출 불가
+
     MyInterface4.super.m2();
 
     System.out.println("MyInterface4Impl.m1()");

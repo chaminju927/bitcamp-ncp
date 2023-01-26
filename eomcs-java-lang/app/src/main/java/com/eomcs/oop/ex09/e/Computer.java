@@ -27,7 +27,7 @@ public interface Computer {
   // 새 규칙을 새 인터페이스(예: Computer2)로 정의할 순 있지만,
   // 그렇게 하면 기존에 진행한 모든 프로젝트들과 호환되지 않는 문제가 발생한다.
   //
-  // 기존 규칙을 변경하되, 
+  // 기존 규칙을 변경하되,
   // 기존 구현체(기존 규칙에 따라 작성한 클래스)에는 영향을 끼치고 싶지 않을 때
   // 바로 다음 문법을 사용하라!
   // "디폴트 메서드(default method)" - Java8에서 추가한 문법이다.
@@ -35,7 +35,6 @@ public interface Computer {
   default void touch() {
     // 구현할 코드 있으면 작성하고, 없으면 빈 채로 둔다.
   }
-
   // 위에 touch()라는 새 규칙을 추가하더라도
   // 기존에 작성한 FirstComputer, SecondComputer, ThirdComputer 클래스 모두
   // 컴파일 오류가 발생하지 않는다.

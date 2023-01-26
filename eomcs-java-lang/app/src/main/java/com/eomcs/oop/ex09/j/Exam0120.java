@@ -16,7 +16,7 @@ public class Exam0120 {
       @Override
       public boolean accept(File dir, String name) {
         return name.endsWith(".java") ? true : false;
-      }
+      }// 인터페이스 규칙에 따라 클래스를 만드는 입장
     }
 
     String[] filenames = file.list(new MyFilter());

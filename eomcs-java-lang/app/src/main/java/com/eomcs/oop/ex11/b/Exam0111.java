@@ -3,7 +3,7 @@ package com.eomcs.oop.ex11.b;
 
 class A2 {
 
-  static class X {
+  static class X { //중첩클래스
     // top level class 처럼 스태틱 멤버 선언 가능
     static int v1;
     static void m1() {}

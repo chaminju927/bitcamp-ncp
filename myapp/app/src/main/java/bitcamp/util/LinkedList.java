@@ -1,12 +1,10 @@
 package bitcamp.util;
 
-import bitcamp.myapp.dao.DaoException;
 //기존의 ObjectDao의 범용성을 높이기 위해 LinkedList로 변경
-public class LinkedList implements List {
+public class LinkedList extends AbstractList {
 
   private Node head;
   private Node tail;
-  private int size;
 
   @Override
   public void add(Object value) {
@@ -109,16 +107,11 @@ public class LinkedList implements List {
     return -1;
   }
 
-  @Override
-  public int size() {
-    return this.size;
-  }
+
 
   @Override
   public Object get(int index) {
-    if (index < 0 || index >= this.size) {
-      throw new DaoException("인덱스가 무효합니다!");
-    }
+    super.get(index);
 
     Node cursor = head;
     int i = 0;
@@ -129,10 +122,22 @@ public class LinkedList implements List {
     }
     return cursor.value;
   }
-  @Override   //수퍼 클래스/인터페이스의 추상메서드도 재정의 가능하다!
-  public Iterator iterator() {
-    //이 LinkedList 객체에서 데이터를 꺼내주는 일을 할
-    //Iterator 구현체를 만들어 리턴한다. this는 LinkedList객체주소!!
-    return new ListIterator(this);
+
+
+  // LinkedList 클래스에서만 사용하는 클래스라면
+  // LinkedList 클래스 안에 두는 것이 유지 보수에 더 낫다.
+  // - 패키지 외부에 노출되지 않으므로 다른 개발자가 헷갈릴 이유가 없다.
+  // => 스태틱 중첩 클래스(static nested class)
+  //
+  static class Node {
+    Object value;
+    Node next;
+
+    public Node() {}
+
+    public Node(Object value) {
+      this.value = value;
+    }
+
   }
 }
