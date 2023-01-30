@@ -1,20 +1,20 @@
 package bitcamp.myapp.dao;
 
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import bitcamp.myapp.vo.Student;
-import bitcamp.util.Iterator;
-import bitcamp.util.List;
+
 
 public class StudentDao {
 
-  List list;
+  List<Student> list;
 
   int lastNo;
 
-  public StudentDao(List list) {
+  public StudentDao(List<Student> list) {
     this.list = list;
   }
-
 
   public void insert(Student s) {
     s.setNo(++lastNo);
@@ -24,10 +24,10 @@ public class StudentDao {
 
   public Student[] findAll() {
     Student[] students = new Student[list.size()];
-    Iterator i = list.iterator();
+    Iterator<Student> i = list.iterator();
     int index = 0;
-    while (i.hasNext()) {  //iterator에게 꺼낼수 있는지 물어봄
-      students[index++] = (Student) i.next();
+    while (i.hasNext()) {
+      students[index++] = i.next();
     }
     return students;
   }
@@ -40,7 +40,7 @@ public class StudentDao {
     if (index == -1) {
       return null;
     }
-    return (Student) list.get(index);
+    return list.get(index);
   }
 
   public void update(Student s) {
