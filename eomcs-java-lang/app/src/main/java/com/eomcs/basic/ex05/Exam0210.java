@@ -4,7 +4,6 @@ package com.eomcs.basic.ex05;
 import java.util.ArrayDeque;
 
 public class Exam0210 {
-
   public static void main(String[] args) {
 
     // Deque 인터페이스

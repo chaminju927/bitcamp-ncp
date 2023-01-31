@@ -1,6 +1,11 @@
 package bitcamp.myapp.handler;
 
+import java.io.File;
+import java.io.FileReader;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 import bitcamp.myapp.dao.BoardDao;
 import bitcamp.myapp.vo.Board;
 import bitcamp.util.Prompt;
@@ -157,5 +162,47 @@ public class BoardHandler {
           System.out.println("잘못된 메뉴 번호 입니다.");
       }
     }
+  }
+
+
+  @SuppressWarnings("unchecked")
+  public static void loadBoards() {
+    File file = new File("./board.csv");
+
+    FileReader out = null;
+    Scanner scanner = null;
+
+    try {
+      out = new FileReader(file);
+      Scanner scanner = new Scanner();
+
+      while (true) {
+        String record = scanner.nextLine();
+
+        String[] values = record.split(",");
+
+        Board board = new Board();
+        board.setNo(Integer.parseInt(values[0]));
+        board.setTitle(values[1]);
+        board.setContent(values[2]);
+        board.setPassword(values[3]);
+        board.setCreatedDate(values[4]);
+        board.setViewCount(Integer.parseInt(values[5]));
+
+        @SuppressWarnings("rawtypes")
+        List list;
+        list.add(board);
+
+      } catch (NoSuchElementException e) {
+        break;
+      }
+    }
+  } catch (Exception e){
+    System.out.println("파일 출력 중 오류 발생");
+  } finally {
+    try {scanner.close();} catch (Exception e) {}
+    try {out.close();} catch (Exception e) {}
+
+
   }
 }
