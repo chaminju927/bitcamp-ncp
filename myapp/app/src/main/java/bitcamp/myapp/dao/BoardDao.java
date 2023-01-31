@@ -81,6 +81,42 @@ public class BoardDao {
       e.printStackTrace();
     }
   }
+
+  //  public static void load() {
+  //    File filename = new File("./board.csv");
+  //
+  //    try {
+  //      out = new FileReader(filename);
+  //      Scanner scanner = new Scanner();
+  //
+  //      while (true) {
+  //        String record = scanner.nextLine();
+  //
+  //        String[] values = record.split(",");
+  //
+  //        Board b = new Board();
+  //        b.setNo(Integer.parseInt(values[0]));
+  //        b.setTitle(values[1]);
+  //        b.setContent(values[2]);
+  //        b.setPassword(values[3]);
+  //        b.setCreatedDate(values[4]);
+  //        b.setViewCount(Integer.parseInt(values[5]));
+  //
+  //        list.add(b);
+  //
+  //      } catch (NoSuchElementException e) {
+  //        break;
+  //      }
+  //    }
+  //  } catch (Exception e){
+  //    System.out.println("파일 출력 중 오류 발생");
+  //  } finally {
+  //    try {scanner.close();} catch (Exception e) {}
+  //    try {out.close();} catch (Exception e) {}
+  //
+  //
+  //  }
+
 }
 
 
