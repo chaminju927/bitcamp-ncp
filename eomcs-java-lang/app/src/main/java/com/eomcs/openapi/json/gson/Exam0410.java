@@ -21,7 +21,7 @@ public class Exam0410 {
     b.setNo(1);
     b.setTitle("제목");
     b.setContent("내용");
-    b.setWriter(m);
+    b.setWriter(m);   // 출력값 확인해보기
     b.setViewCount(98);
     b.setLike(5);
     b.setRegisteredDate(new Date(System.currentTimeMillis()));

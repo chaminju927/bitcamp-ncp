@@ -1,4 +1,4 @@
-// JSON 라이브러리 준비 - jackson-databind 라이브러러 가져오기
+// JSON 라이브러리 준비 - jackson-databind 라이브러리 가져오기
 package com.eomcs.openapi.json.jackson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,7 +16,7 @@ public class Exam0100 {
     // 2) `$ gradle eclipse` 를 실행하여 라이브러리를 다운로드하여 프로젝트에 등록한다.
     //   - 명령을 실행한 후 eclipse IDE 에서 해당 프로젝트를 refresh 해야 한다.
     //   - 'Referenced Libraries' 노드에서 jackson-databind 라이브러리 파일이 추가된 것을 확인한다.
-    //
+    // => ObjectMapper 클래스 사용 가능
     ObjectMapper mapper = new ObjectMapper();
   }
 }

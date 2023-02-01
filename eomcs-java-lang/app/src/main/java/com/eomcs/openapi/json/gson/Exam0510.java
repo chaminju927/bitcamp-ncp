@@ -39,7 +39,7 @@ public class Exam0510 {
     p.setStartDate(Date.valueOf("2021-1-1"));
     p.setEndDate(Date.valueOf("2021-2-2"));
     p.setOwner(m2);
-    p.setMembers(members);
+    p.setMembers(members);   //members라는 Arraylist저장
 
     String jsonStr = new Gson().toJson(p);
 

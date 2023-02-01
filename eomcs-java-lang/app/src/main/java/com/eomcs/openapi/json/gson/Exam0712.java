@@ -1,4 +1,4 @@
-// 맵객체 --> JSON 문자열 
+// 맵객체 --> JSON 문자열
 package com.eomcs.openapi.json.gson;
 
 import java.sql.Date;
@@ -16,7 +16,7 @@ public class Exam0712 {
     mgr.setPosition("대리");
     mgr.setFax("02-1111-2222");
 
-    ManagerParam param = new ManagerParam();
+    ManagerParam param = new ManagerParam(); //gson은 setter/getter없어도 알아서 처리
     param.no = 100;
     param.title = "Hello";
     param.manager = mgr;

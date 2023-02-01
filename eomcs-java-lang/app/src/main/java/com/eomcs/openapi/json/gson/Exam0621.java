@@ -19,6 +19,7 @@ public class Exam0621 {
 
     // JSON 데이터를 가지고 객체를 생성할 때 특정 타입의 객체로 만들어주는 어댑터
     // => 프로퍼티의 존재 유무에 따라 Manager를 생성하든가 Teacher를 생성하는 일을 한다.
+    // => JsonDeserializer
     class MyJsonDeserializer implements JsonDeserializer<Member> {
       @Override
       public Member deserialize(JsonElement json, Type typeOfT,
