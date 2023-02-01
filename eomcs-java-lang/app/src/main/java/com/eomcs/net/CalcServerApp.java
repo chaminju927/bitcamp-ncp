@@ -7,22 +7,24 @@ import java.util.Scanner;
 
 public class CalcServerApp {
   public static void main(String[] args) throws Exception {
-    Scanner keyScan = new Scanner(System.in);
     System.out.println("서버 실행 중...");
 
     ServerSocket serverSocket = new ServerSocket(8888);
 
     Socket socket = serverSocket.accept();
-    System.out.println("클라이언트와 연결됨!");
+    System.out.println("계산기 연결됨!");
 
     Scanner in = new Scanner(socket.getInputStream());
     PrintStream out = new PrintStream(socket.getOutputStream());
 
     while(true) {
       String message = in.nextLine();
-      System.out.printf("계산 식: %s\n", message);
+      System.out.printf("식 = %s\n", message);
+      
+      if(message.equals("quit")) {
+    	  break;
+      }
 
-      try {
         String[] compute = message.split(" ");
 
         int a = Integer.parseInt(compute[0]);
@@ -30,30 +32,28 @@ public class CalcServerApp {
         String c = compute[1];
 
         int result = 0;
-
+        String failed = null;
+        
         switch (c) {
-          case "+" : result = a + b; break;
-          case "-" : result = a - b; break;
-          case "*" : result = a * b; break;
-          case "/" : result = a / b; break;
-          default: System.out.println("입력값 오류!");
-        }
-        System.out.printf("계산 결과는 %d입니다!", result);
-        out.println(result);
-
-      } catch (Exception e) {
-        System.out.println("연산자를 제대로 입력하세요");
-        e.printStackTrace();
+        case "+" : result = a + b; break;
+        case "-" : result = a - b; break;
+        case "*" : result = a * b; break;
+        case "/" : result = a / b; break;
+        default: 
+          failed = "Cannot Calculate";
+          out.println(failed);
       }
-
-      //String result = keyScan.nextLine();
-
+        System.out.printf("답: \n %d %s %d = %d\n", a, c, b, result);
+        out.println(result);
+      }
+        
+        
       socket.close();
       serverSocket.close();
 
-      System.out.println("서버 종료!!");
-      keyScan.close();
+      System.out.println("계산기 종료!!");
     }
   }
-}
+
+
 
