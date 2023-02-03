@@ -2,57 +2,101 @@ package bitcamp.myapp;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import bitcamp.myapp.dao.BoardDao;
+import bitcamp.myapp.dao.StudentDao;
+import bitcamp.myapp.dao.TeacherDao;
 import bitcamp.myapp.servlet.BoardServlet;
 import bitcamp.myapp.servlet.StudentServlet;
 import bitcamp.myapp.servlet.TeacherServlet;
 import bitcamp.myapp.vo.Board;
+import bitcamp.myapp.vo.Student;
+import bitcamp.myapp.vo.Teacher;
 
 public class ServerApp {
-  public static void main(String[] args) {
+  BoardDao boardDao = new BoardDao(new LinkedList<Board>());
+  StudentDao studentDao = new StudentDao(new ArrayList<Student>());
+  TeacherDao teacherDao = new TeacherDao(new LinkedList<Teacher>());
 
+  StudentServlet studentServlet = new StudentServlet(studentDao);
+  TeacherServlet teacherServlet = new TeacherServlet(teacherDao);
+  BoardServlet boardServlet = new BoardServlet(boardDao);
+
+  public static void main(String[] args) {
     new ServerApp().service(8888);
-    System.out.println("서버종료");
+    System.out.println("서버 종료!");
   }
 
   void service(int port) {
-    System.out.println("서버 실행중");
+    System.out.println("서버 실행 중...");
 
-    try (ServerSocket serverSocket = new ServerSocket(port);
-        Socket socket = serverSocket.accept();
-        DataInputStream in = new DataInputStream(socket.getInputStream());
-        DataOutputStream out = new DataOutputStream(socket.getOutputStream())) {
+    try (ServerSocket serverSocket = new ServerSocket(port)) {
 
-      BoardDao boardDao = new BoardDao(new LinkedList<Board>());
       boardDao.load("board.json");
+      studentDao.load("student.json");
+      teacherDao.load("teacher.json");
 
-      StudentServlet studentServlet = new StudentServlet("학생");
-      TeacherServlet teacherServlet = new TeacherServlet("강사");
-      BoardServlet boardServlet = new BoardServlet(boardDao);
-
-      //소켓연결 후 무한루프
       while (true) {
-        String dataName = in.readUTF();
-        switch(dataName) {
-          case "board":
-            boardServlet.service(in,out);
-            boardDao.save("board.json");
-            break;
-        }
+        Socket socket = serverSocket.accept();// 클라 접속후 블로킹,아래메서드와 합치면 안됨
+        //runnable규칙에 따라 만든 thread가 run수행
+        new Thread(() -> processRequest(socket)).start();
+
       }
+
     } catch (Exception e) {
-      System.out.println("서버 오류 발생");
+      System.out.println("서버 오류 발생!");
       e.printStackTrace();
     }
   }
+
+
+  void processRequest(Socket socket) {
+    try (Socket socket2 = socket;
+        DataInputStream in = new DataInputStream(socket.getInputStream());
+        DataOutputStream out = new DataOutputStream(socket.getOutputStream())) {
+
+      InetAddress address = socket.getInetAddress();
+      System.out.printf("%s 가 연결함!\n", address.getHostAddress());
+
+      String dataName = in.readUTF();
+      switch (dataName) {
+        case "board":
+          boardServlet.service(in, out);
+          boardDao.save("board.json");
+          break;
+        case "student":
+          studentServlet.service(in, out);
+          studentDao.save("student.json");
+          break;
+        case "teacher":
+          teacherServlet.service(in, out);
+          teacherDao.save("teacher.json");
+          break;
+      }
+    } catch (Exception e) {
+      System.out.println("실행 오류!");
+    }
+  }
+
+  class RequestProcessor implements Runnable {
+    Socket socket;
+
+    public RequestProcessor(Socket socket) {
+      this.socket = socket;
+    }
+
+    @Override
+    public void run() {
+      ServerApp.this.processRequest(socket);
+
+    }
+
+  }
 }
-
-
-
-
 
 
 

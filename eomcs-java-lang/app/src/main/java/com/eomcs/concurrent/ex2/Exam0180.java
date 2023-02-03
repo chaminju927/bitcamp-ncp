@@ -31,12 +31,13 @@ public class Exam0180 {
   }
 }
 
-// JVM의 스레드 계층도: (openjdk 11 기준)
+// JVM의 스레드 계층도: (oracle jdk 17 기준)
 // system(TG)
 //   ==> Reference Handler(T)
 //   ==> Finalizer(T)
 //   ==> Signal Dispatcher(T)
 //   ==> Attach Listener(T)
+//   ==> Notification Listener(T)
 //   ==> main(TG)
 //         ==> main(T)
 //   ==> InnocuousThreadGroup(TG)
