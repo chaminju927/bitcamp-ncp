@@ -8,7 +8,7 @@ public class Exam0310 {
   public static void main(String[] args) throws Exception {
 
     try (java.sql.Connection con = DriverManager.getConnection(
-        "jdbc:mariadb://localhost:3306/studydb?user=study&password=1111");
+        "jdbc:mariadb://localhost:3300/studydb?user=study&password=1111");
 
         // java.sql.Statement 구현 객체를 얻는다.
         // - SQL문을 DBMS의 형식에 따라 인코딩하여 서버에 전달하는 일을 하는 객체.
@@ -34,7 +34,7 @@ public class Exam0310 {
       // => select처럼 data를 조회하는 sql 명령을 말한다.
       //
       int count = stmt.executeUpdate(
-          "insert into x_board(title,contents) values('제목10','내용')");
+          "insert into x_board(title,contents) values('제목10','내용'),('제목11','내용')");
       System.out.printf("%d 개 입력 성공!", count);
     }
   }

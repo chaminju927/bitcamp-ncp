@@ -24,7 +24,7 @@ public class Exam0150 {
     }
 
     try (Connection con = DriverManager.getConnection( //
-        "jdbc:mariadb://localhost:3306/studydb?user=study&password=1111");
+        "jdbc:mariadb://localhost:3300/studydb?user=study&password=1111");
         Statement stmt = con.createStatement()) {
 
       // delete 문장은 executeUpdate()를 사용하여 서버에 전달한다.
