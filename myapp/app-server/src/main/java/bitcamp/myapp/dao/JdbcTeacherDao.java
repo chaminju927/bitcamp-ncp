@@ -1,7 +1,6 @@
 package bitcamp.myapp.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -10,11 +9,16 @@ import dao.DaoException;
 
 public class JdbcTeacherDao implements TeacherDao {
 
+  //의존객체 Connection을 생성자에서 받는다.
+  Connection con;
+  public JdbcTeacherDao(Connection con) {
+    this.con = con;
+  }
+
+
   @Override
   public void insert(Teacher t) {
-    try (Connection con = DriverManager.getConnection(
-        "jdbc:mariadb://localhost:3300/studydb", "study", "1111");
-        Statement stmt =  con.createStatement()) {
+    try (Statement stmt =  con.createStatement()) {
 
       String sql = String.format(
           "insert into app_teacher(name, tel, email, degree, school, major, wage) "
@@ -29,9 +33,7 @@ public class JdbcTeacherDao implements TeacherDao {
 
   @Override
   public Teacher[] findAll() {
-    try (Connection con = DriverManager.getConnection(
-        "jdbc:mariadb://localhost:3300/studydb", "study", "1111");
-        Statement stmt =  con.createStatement();
+    try (Statement stmt =  con.createStatement();
         ResultSet rs = stmt.executeQuery(
             "select teacher_id, name, tel, created_date, email, school, major, wage "
                 + "from app_teacher order by teacher_id desc")) {
@@ -59,9 +61,7 @@ public class JdbcTeacherDao implements TeacherDao {
 
   @Override
   public Teacher findByNo(int no) {
-    try (Connection con = DriverManager.getConnection(
-        "jdbc:mariadb://localhost:3300/studydb", "study", "1111");
-        Statement stmt =  con.createStatement();
+    try (Statement stmt =  con.createStatement();
         ResultSet rs = stmt.executeQuery(
             "select teacher_id, name, tel, created_date, email, school, major, wage "
                 + "from app_teacher where teacher_id=" + no)) {
@@ -89,9 +89,7 @@ public class JdbcTeacherDao implements TeacherDao {
 
   @Override
   public void update(Teacher b) {
-    try (Connection con = DriverManager.getConnection(
-        "jdbc:mariadb://localhost:3300/studydb", "study", "1111");
-        Statement stmt =  con.createStatement()) {
+    try (Statement stmt =  con.createStatement()) {
 
       String sql = String.format("update app_teacher set name='%s', tel='%s', email='%s', degree='%d', "
           + "school='%s', major'='%s', wage='d%'  where teacher_id=%d",
@@ -106,9 +104,7 @@ public class JdbcTeacherDao implements TeacherDao {
 
   @Override
   public boolean delete(Teacher t) {
-    try (Connection con = DriverManager.getConnection(
-        "jdbc:mariadb://localhost:3300/studydb", "study", "1111");
-        Statement stmt =  con.createStatement()) {
+    try (Statement stmt =  con.createStatement()) {
 
       String sql = String.format("delete from app_teacher_id =%d", t.getNo());
 
