@@ -10,7 +10,8 @@ create table app_board (
 alter table app_board
   add constraint primary key (board_id),
   modify column board_id int not null auto_increment;
-  
+
+
 create table app_student(
   student_id int not null,
   name varchar(50) not null,
@@ -21,14 +22,14 @@ create table app_student(
   det_addr varchar(255),
   work boolean,
   gender char(1),
-  level int 
+  level int
 );
 
 alter table app_student
   add constraint primary key (student_id),
   modify column student_id int not null auto_increment;
-  
 
+  
 create table app_teacher(
   teacher_id int not null,
   name varchar(50) not null,
@@ -45,4 +46,5 @@ alter table app_teacher
   add constraint primary key (teacher_id),
   modify column teacher_id int not null auto_increment;
   
-
+  
+  

@@ -4,12 +4,20 @@ import bitcamp.util.StreamTool;
 
 public class HelloHandler {
 
-  public HelloHandler() {
-    // TODO Auto-generated constructor stub
+  public void service(StreamTool streamTool) throws Exception {
+    streamTool.println("안녕하세요!!!").send();
   }
 
-  public void service(StreamTool streamTool) throws Exception {
-    streamTool.println("안녕하세요").send();
-  }
 
 }
+
+
+
+
+
+
+
+
+
+
+

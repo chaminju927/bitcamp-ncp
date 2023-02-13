@@ -26,14 +26,13 @@ public class StudentHandler {
     m.setLevel((byte) streamTool.promptInt("0. 비전공자\n1. 준전공자\n2. 전공자\n전공? "));
 
     this.memberDao.insert(m);
-    streamTool.println("입력했습니다").send();
+
+    streamTool.println("입력했습니다!").send();
   }
 
   private void printMembers(StreamTool streamTool) throws Exception {
-
     Student[] members = this.memberDao.findAll();
     streamTool.println("번호\t이름\t전화\t재직\t전공");
-
     for (Student m : members) {
       streamTool.printf("%d\t%s\t%s\t%s\t%s\n",
           m.getNo(), m.getName(), m.getTel(),
@@ -48,6 +47,11 @@ public class StudentHandler {
 
     Student m = this.memberDao.findByNo(memberNo);
 
+    if (m == null) {
+      streamTool.println("해당 번호의 학생이 없습니다.").send();
+      return;
+    }
+
     streamTool
     .printf("    이름: %s\n", m.getName())
     .printf("    전화: %s\n", m.getTel())
@@ -59,6 +63,7 @@ public class StudentHandler {
     .printf("    전공: %s\n", getLevelText(m.getLevel()))
     .printf("  등록일: %s\n", m.getCreatedDate())
     .send();
+
   }
 
   // 인스턴스 멤버(필드나 메서드)를 사용하지 않기 때문에
@@ -108,7 +113,6 @@ public class StudentHandler {
       streamTool.println("변경 취소했습니다.");
     }
     streamTool.send();
-
   }
 
   private void deleteMember(StreamTool streamTool) throws Exception {
@@ -128,8 +132,8 @@ public class StudentHandler {
     }
 
     memberDao.delete(m);
-    streamTool.println("삭제했습니다.").send();
 
+    streamTool.println("삭제했습니다.").send();
   }
 
   private void searchMember(StreamTool streamTool) throws Exception {
@@ -138,7 +142,6 @@ public class StudentHandler {
     Student[] members = this.memberDao.findByKeyword(keyword);
 
     streamTool.println("번호\t이름\t전화\t재직\t전공");
-
     for (Student m : members) {
       streamTool.printf("%d\t%s\t%s\t%s\t%s\n",
           m.getNo(), m.getName(), m.getTel(),
@@ -150,6 +153,8 @@ public class StudentHandler {
 
   public void service(StreamTool streamTool) throws Exception {
 
+    menu(streamTool);
+
     while (true) {
       String command = streamTool.readString();
 
@@ -157,9 +162,10 @@ public class StudentHandler {
         menu(streamTool);
         continue;
       }
+
       int menuNo;
       try {
-        menuNo = streamTool.readInt();
+        menuNo = Integer.parseInt(command);
       } catch (Exception e) {
         streamTool.println("메뉴 번호가 옳지 않습니다!").println().send();
         continue;
@@ -168,7 +174,7 @@ public class StudentHandler {
       try {
         switch (menuNo) {
           case 0:
-            streamTool.println("메인화면으로 이동");
+            streamTool.println("메인화면으로 이동!").send();
             return;
           case 1: this.inputMember(streamTool); break;
           case 2: this.printMembers(streamTool); break;
@@ -187,7 +193,7 @@ public class StudentHandler {
     }
   }
 
-  void menu(StreamTool streamTool) throws Exception{
+  void menu(StreamTool streamTool) throws Exception {
     streamTool.printf("[%s]\n", this.title)
     .println("1. 등록")
     .println("2. 목록")
@@ -199,3 +205,14 @@ public class StudentHandler {
     .send();
   }
 }
+
+
+
+
+
+
+
+
+
+
+

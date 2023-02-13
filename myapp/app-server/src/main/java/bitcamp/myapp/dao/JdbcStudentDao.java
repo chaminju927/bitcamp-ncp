@@ -9,21 +9,29 @@ import dao.DaoException;
 
 public class JdbcStudentDao implements StudentDao {
 
-  //의존객체 Connection을 생성자에서 받는다.
   Connection con;
+
+  // 의존객체 Connection 을 생성자에서 받는다.
   public JdbcStudentDao(Connection con) {
     this.con = con;
   }
 
   @Override
   public void insert(Student s) {
-    try (
-        Statement stmt =  con.createStatement()) {
+    try (Statement stmt = con.createStatement()) {
 
-      String sql = String.format("inset into app_student(name, tel, pst_no, bas_addr, det_addr, work, gender, level) "
-          + "values('%s', 's%', '%s', '%s', '%s', '%b', '%s', '%d'),"
-          + s.getName(), s.getTel(), s.getPostNo(), s.getBasicAddress(), s.getDetailAddress(),
-          s.isWorking(), s.getGender(), s.getLevel());
+      String sql = String.format(
+          "insert into app_student(name, tel, pst_no, bas_addr, det_addr, work, gender, level)"
+              + " values('%s','%s','%s','%s','%s',%b,'%s',%d)",
+              s.getName(),
+              s.getTel(),
+              s.getPostNo(),
+              s.getBasicAddress(),
+              s.getDetailAddress(),
+              s.isWorking(),
+              s.getGender(),
+              s.getLevel());
+
       stmt.executeUpdate(sql);
 
     } catch (Exception e) {
@@ -33,11 +41,11 @@ public class JdbcStudentDao implements StudentDao {
 
   @Override
   public Student[] findAll() {
-    try (
-        Statement stmt =  con.createStatement();
+    try (Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(
             "select student_id, name, tel, work, level"
-                + "from app_student order by student_id desc")) {
+                + " from app_student"
+                + " order by student_id desc")) {
 
       ArrayList<Student> list = new ArrayList<>();
       while (rs.next()) {
@@ -47,9 +55,14 @@ public class JdbcStudentDao implements StudentDao {
         s.setTel(rs.getString("tel"));
         s.setWorking(rs.getBoolean("work"));
         s.setLevel(rs.getByte("level"));
+
         list.add(s);
       }
-      return list.toArray(new Student[] {});  //아래 세줄 리팩토링 한 코드
+
+      Student[] arr = new Student[list.size()];
+      list.toArray(arr);
+
+      return arr;
 
     } catch (Exception e) {
       throw new DaoException(e);
@@ -58,14 +71,12 @@ public class JdbcStudentDao implements StudentDao {
 
   @Override
   public Student findByNo(int no) {
-    try (
-        Statement stmt =  con.createStatement();
+    try (Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(
             "select student_id, name, tel, created_date, pst_no, bas_addr, det_addr, work, gender, level"
-                + "from app_student "
-                + "where student_id=" + no)) {
+                + " from app_student"
+                + " where student_id=" + no)) {
 
-      ArrayList<Student> list = new ArrayList<>();
       if (rs.next()) {
         Student s = new Student();
         s.setNo(rs.getInt("student_id"));
@@ -80,6 +91,7 @@ public class JdbcStudentDao implements StudentDao {
         s.setLevel(rs.getByte("level"));
         return s;
       }
+
       return null;
 
     } catch (Exception e) {
@@ -89,12 +101,11 @@ public class JdbcStudentDao implements StudentDao {
 
   @Override
   public Student[] findByKeyword(String keyword) {
-    try (
-        Statement stmt =  con.createStatement();
+    try (Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(
             "select student_id, name, tel, work, level"
-                + "from app_student"
-                + "where name like ('%" + keyword + "%') "
+                + " from app_student"
+                + " where name like('%" + keyword + "%')"
                 + " or tel like('%" + keyword + "%')"
                 + " or bas_addr like('%" + keyword + "%')"
                 + " or det_addr like('%" + keyword + "%')"
@@ -108,9 +119,14 @@ public class JdbcStudentDao implements StudentDao {
         s.setTel(rs.getString("tel"));
         s.setWorking(rs.getBoolean("work"));
         s.setLevel(rs.getByte("level"));
+
         list.add(s);
       }
-      return list.toArray(new Student[] {});  //아래 세줄 리팩토링 한 코드
+
+      Student[] arr = new Student[list.size()];
+      list.toArray(arr);
+
+      return arr;
 
     } catch (Exception e) {
       throw new DaoException(e);
@@ -119,13 +135,22 @@ public class JdbcStudentDao implements StudentDao {
 
   @Override
   public void update(Student s) {
-    try (
-        Statement stmt =  con.createStatement()) {
+    try (Statement stmt = con.createStatement()) {
 
-      String sql = String.format("update app_student set name='%s', tel='%s', pst_no='%s',"
-          + " bas_addr='%s', det_addr='%s', work='%b', gender='%s', level='%d'"
-          + "  where student_id=%d",
-          s.getName(), s.getTel(), s.getPostNo(), s.getBasicAddress(), s.getDetailAddress(), s.isWorking(), s.getGender(), s.getLevel());
+      String sql = String.format(
+          "update app_student set "
+              + " name='%s', tel='%s', pst_no='%s', bas_addr='%s', det_addr='%s',"
+              + " work=%b, gender='%s', level=%d "
+              + " where student_id=%d",
+              s.getName(),
+              s.getTel(),
+              s.getPostNo(),
+              s.getBasicAddress(),
+              s.getDetailAddress(),
+              s.isWorking(),
+              s.getGender(),
+              s.getLevel(),
+              s.getNo());
 
       stmt.executeUpdate(sql);
 
@@ -136,18 +161,15 @@ public class JdbcStudentDao implements StudentDao {
 
   @Override
   public boolean delete(Student s) {
-    try (
-        Statement stmt =  con.createStatement()) {
+    try (Statement stmt = con.createStatement()) {
 
-      String sql = String.format("delete from app_student_id =%d", s.getNo());
+      String sql = String.format("delete from app_student where student_id=%d", s.getNo());
 
       return stmt.executeUpdate(sql) == 1;
-
 
     } catch (Exception e) {
       throw new DaoException(e);
     }
-
   }
 }
 

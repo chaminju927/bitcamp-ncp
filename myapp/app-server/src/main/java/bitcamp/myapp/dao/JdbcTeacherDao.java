@@ -9,21 +9,28 @@ import dao.DaoException;
 
 public class JdbcTeacherDao implements TeacherDao {
 
-  //의존객체 Connection을 생성자에서 받는다.
   Connection con;
+
+  // 의존객체 Connection 을 생성자에서 받는다.
   public JdbcTeacherDao(Connection con) {
     this.con = con;
   }
 
-
   @Override
-  public void insert(Teacher t) {
-    try (Statement stmt =  con.createStatement()) {
+  public void insert(Teacher s) {
+    try (Statement stmt = con.createStatement()) {
 
       String sql = String.format(
-          "insert into app_teacher(name, tel, email, degree, school, major, wage) "
-              + "values('%s','s%','%s','%d','%s','%s','%d'),"
-              + t.getName(), t.getTel(), t.getEmail(), t.getDegree(), t.getSchool(), t.getMajor(), t.getWage());
+          "insert into app_teacher(name, tel, email, degree, school, major, wage)"
+              + " values('%s','%s','%s',%d,'%s','%s',%d)",
+              s.getName(),
+              s.getTel(),
+              s.getEmail(),
+              s.getDegree(),
+              s.getSchool(),
+              s.getMajor(),
+              s.getWage());
+
       stmt.executeUpdate(sql);
 
     } catch (Exception e) {
@@ -33,26 +40,29 @@ public class JdbcTeacherDao implements TeacherDao {
 
   @Override
   public Teacher[] findAll() {
-    try (Statement stmt =  con.createStatement();
+    try (Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(
-            "select teacher_id, name, tel, created_date, email, school, major, wage "
-                + "from app_teacher order by teacher_id desc")) {
+            "select teacher_id, name, tel, degree, major, wage"
+                + " from app_teacher"
+                + " order by teacher_id desc")) {
 
       ArrayList<Teacher> list = new ArrayList<>();
       while (rs.next()) {
-        Teacher t = new Teacher();
-        t.setNo(rs.getInt("teacher_id"));
-        t.setName(rs.getString("name"));
-        t.setTel(rs.getString("tel"));
-        t.setCreatedDate(rs.getString("created_date"));
-        t.setEmail(rs.getString("email"));
-        t.setDegree(rs.getInt("degree"));
-        t.setSchool(rs.getString("det_addr"));
-        t.setMajor(rs.getString("work"));
-        t.setWage(rs.getInt("wage"));
-        list.add(t);
+        Teacher s = new Teacher();
+        s.setNo(rs.getInt("teacher_id"));
+        s.setName(rs.getString("name"));
+        s.setTel(rs.getString("tel"));
+        s.setDegree(rs.getInt("degree"));
+        s.setMajor(rs.getString("major"));
+        s.setWage(rs.getInt("wage"));
+
+        list.add(s);
       }
-      return list.toArray(new Teacher[] {});  //아래 세줄 리팩토링 한 코드
+
+      Teacher[] arr = new Teacher[list.size()];
+      list.toArray(arr);
+
+      return arr;
 
     } catch (Exception e) {
       throw new DaoException(e);
@@ -61,25 +71,26 @@ public class JdbcTeacherDao implements TeacherDao {
 
   @Override
   public Teacher findByNo(int no) {
-    try (Statement stmt =  con.createStatement();
+    try (Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(
-            "select teacher_id, name, tel, created_date, email, school, major, wage "
-                + "from app_teacher where teacher_id=" + no)) {
+            "select teacher_id, name, tel, created_date, email, degree, school, major, wage"
+                + " from app_teacher"
+                + " where teacher_id=" + no)) {
 
-      ArrayList<Teacher> list = new ArrayList<>();
       if (rs.next()) {
-        Teacher t = new Teacher();
-        t.setNo(rs.getInt("teacher_id"));
-        t.setName(rs.getString("name"));
-        t.setTel(rs.getString("tel"));
-        t.setCreatedDate(rs.getString("created_date"));
-        t.setEmail(rs.getString("email"));
-        t.setDegree(rs.getInt("degree"));
-        t.setSchool(rs.getString("school"));
-        t.setMajor(rs.getString("major"));
-        t.setWage(rs.getInt("wage"));
-        list.add(t);
+        Teacher s = new Teacher();
+        s.setNo(rs.getInt("teacher_id"));
+        s.setName(rs.getString("name"));
+        s.setTel(rs.getString("tel"));
+        s.setCreatedDate(rs.getString("created_date"));
+        s.setEmail(rs.getString("email"));
+        s.setDegree(rs.getInt("degree"));
+        s.setSchool(rs.getString("school"));
+        s.setMajor(rs.getString("major"));
+        s.setWage(rs.getInt("wage"));
+        return s;
       }
+
       return null;
 
     } catch (Exception e) {
@@ -88,12 +99,22 @@ public class JdbcTeacherDao implements TeacherDao {
   }
 
   @Override
-  public void update(Teacher b) {
-    try (Statement stmt =  con.createStatement()) {
+  public void update(Teacher t) {
+    try (Statement stmt = con.createStatement()) {
 
-      String sql = String.format("update app_teacher set name='%s', tel='%s', email='%s', degree='%d', "
-          + "school='%s', major'='%s', wage='d%'  where teacher_id=%d",
-          b.getName(), b.getTel(), b.getEmail(), b.getDegree(), b.getSchool(), b.getMajor(), b.getWage());
+      String sql = String.format(
+          "update app_teacher set "
+              + " name='%s', tel='%s', email='%s', degree=%d,"
+              + " school='%s', major='%s', wage=%d "
+              + " where teacher_id=%d",
+              t.getName(),
+              t.getTel(),
+              t.getEmail(),
+              t.getDegree(),
+              t.getSchool(),
+              t.getMajor(),
+              t.getWage(),
+              t.getNo());
 
       stmt.executeUpdate(sql);
 
@@ -104,9 +125,9 @@ public class JdbcTeacherDao implements TeacherDao {
 
   @Override
   public boolean delete(Teacher t) {
-    try (Statement stmt =  con.createStatement()) {
+    try (Statement stmt = con.createStatement()) {
 
-      String sql = String.format("delete from app_teacher_id =%d", t.getNo());
+      String sql = String.format("delete from app_teacher where teacher_id=%d", t.getNo());
 
       return stmt.executeUpdate(sql) == 1;
 
@@ -114,7 +135,6 @@ public class JdbcTeacherDao implements TeacherDao {
       throw new DaoException(e);
     }
   }
-
 }
 
 
