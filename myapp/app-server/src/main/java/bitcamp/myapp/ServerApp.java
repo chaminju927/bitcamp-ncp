@@ -6,9 +6,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import bitcamp.myapp.dao.JdbcBoardDao;
-import bitcamp.myapp.dao.JdbcStudentDao;
-import bitcamp.myapp.dao.JdbcTeacherDao;
+import bitcamp.myapp.dao.impl.BoardDaoImpl;
+import bitcamp.myapp.dao.impl.JdbcTeacherDao;
+import bitcamp.myapp.dao.impl.MemberDaoImpl;
+import bitcamp.myapp.dao.impl.StudentDaoImpl;
 import bitcamp.myapp.handler.BoardHandler;
 import bitcamp.myapp.handler.HelloHandler;
 import bitcamp.myapp.handler.StudentHandler;
@@ -34,13 +35,14 @@ public class ServerApp {
 
   public ServerApp() throws Exception{
     this.con = DriverManager.getConnection(
-        "jdbc:mariadb://localhost:3306/studydb", "study", "1111");
+        "jdbc:mariadb://localhost:3300/studydb", "study", "1111");
 
-    JdbcBoardDao boardDao = new JdbcBoardDao(con);
-    JdbcStudentDao studentDao = new JdbcStudentDao(con);
+    BoardDaoImpl boardDao = new BoardDaoImpl(con);
+    MemberDaoImpl memberDao = new MemberDaoImpl(con);
+    StudentDaoImpl studentDao = new StudentDaoImpl(con);
     JdbcTeacherDao teacherDao = new JdbcTeacherDao(con);
 
-    this.studentHandler = new StudentHandler("학생", studentDao);
+    this.studentHandler = new StudentHandler("학생", memberDao, studentDao);
     this.teacherHandler = new TeacherHandler("강사", teacherDao);
     this.boardHandler = new BoardHandler("게시판", boardDao);
   }
