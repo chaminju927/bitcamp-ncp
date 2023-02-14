@@ -13,6 +13,13 @@ public class Member implements java.io.Serializable {
   private String tel;
   private Date createdDate;
 
+
+
+  @Override
+  public String toString() {
+    return "Member [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password
+        + ", tel=" + tel + ", createdDate=" + createdDate + "]";
+  }
   @Override
   public int hashCode() {
     return Objects.hash(no);
@@ -28,11 +35,7 @@ public class Member implements java.io.Serializable {
     Member other = (Member) obj;
     return no == other.no;
   }
-  @Override
-  public String toString() {
-    return "Member [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password
-        + ", tel=" + tel + ", createdDate=" + createdDate + "]";
-  }
+
   public int getNo() {
     return no;
   }
@@ -69,6 +72,8 @@ public class Member implements java.io.Serializable {
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
+
+
 
 
 }
