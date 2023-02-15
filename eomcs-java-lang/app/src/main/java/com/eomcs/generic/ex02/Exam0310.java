@@ -15,9 +15,9 @@ public class Exam0310 {
     map.put("aaa", "문자열");
     map.put(new Integer(100), new Member("홍길동", 20));
 
-    System.out.println(map.get("aaa"));
-    System.out.println(map.get(100));
-    System.out.println("------------------------------------------");
+//    System.out.println(map.get("aaa"));
+//    System.out.println(map.get(100));
+//    System.out.println("------------------------------------------");
 
     // 위와 같이 제네릭 정보를 넘기지 않는 것 보다,
     // 차라리 다음과 같이 명확하게 Object 타입을 지정하는 것이 좋다. 
@@ -37,6 +37,7 @@ public class Exam0310 {
     // 제네릭을 지정하면 값을 꺼낼 때 형변환할 필요가 없다.
     Member m = map3.get("aaa"); // OK!
 
+    System.out.println(m);
   }
 }
 

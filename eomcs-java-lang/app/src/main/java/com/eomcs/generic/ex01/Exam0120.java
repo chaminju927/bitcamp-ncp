@@ -37,5 +37,10 @@ public class Exam0120 {
     // Object의 다형적 변수를 이용한 방법과 각 메서드를 타입별로 만들어
     // 형변환을 하지 않는 이점을 모두 취할 수 있는 문법이 "제네릭(generic)"이다.
     //
+    
+    System.out.println(obj1);
+    System.out.println(obj2);
+    System.out.println(obj3);
+    
   }
 }

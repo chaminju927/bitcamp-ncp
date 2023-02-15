@@ -11,7 +11,7 @@ public class Exam0210 {
     ArrayList<Member> list = new ArrayList<Member>();
 
     // => 레퍼런스 선언에 제레릭 정보가 있다면 new 연산자에서는 생략할 수 있다.
-    ArrayList<Member> list2 = new ArrayList</*Member*/>(); // OK!
+    ArrayList<Member> list2 = new ArrayList<>(); // OK!
 
     ArrayList<Member> list3;
     list3 = new ArrayList<>(); // OK!

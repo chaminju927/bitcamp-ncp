@@ -26,6 +26,11 @@ public class Exam0110 {
     Date obj4 = (Date) echo(new Date());
 
     Calendar obj5 = (Calendar) echo(Calendar.getInstance());
+  
+  System.out.println(obj);
+  System.out.println(obj2);
+  System.out.println(obj4);
+  
   }
 
 }

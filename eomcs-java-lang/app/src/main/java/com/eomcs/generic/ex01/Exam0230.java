@@ -5,7 +5,6 @@ import com.eomcs.generic.ex02.Member;
 
 
 public class Exam0230 {
-
   //2) 제네릭을 적용한 클래스
   //- 클래스 전체에서 사용할 "타입 파라미터(타입 이름을 저장하는 변수)"를 선언하기
   //     class 클래스명<타입파라미터명, 타입파라미터명, ...> {...}
