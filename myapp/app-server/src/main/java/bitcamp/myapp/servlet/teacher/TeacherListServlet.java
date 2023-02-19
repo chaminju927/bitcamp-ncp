@@ -1,8 +1,9 @@
-package bitcamp.myapp.servlet.board;
+package bitcamp.myapp.servlet.teacher;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,24 +11,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import bitcamp.myapp.dao.BoardDao;
+import bitcamp.myapp.dao.TeacherDao;
+import bitcamp.myapp.vo.Teacher;
 import bitcamp.util.BitcampSqlSessionFactory;
 import bitcamp.util.DaoGenerator;
 
-@WebServlet("/Board/form")
-public class BoardFormServlet extends HttpServlet {
+@WebServlet("/teacher/list")
+public class TeacherListServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  private BoardDao boardDao;
+  private TeacherDao teacherDao;
 
-  public BoardFormServlet() {
+  public TeacherListServlet() {
     try {
       InputStream mybatisConfigInputStream = Resources.getResourceAsStream(
           "bitcamp/myapp/config/mybatis-config.xml");
       SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
       BitcampSqlSessionFactory sqlSessionFactory = new BitcampSqlSessionFactory(
           builder.build(mybatisConfigInputStream));
-      boardDao = new DaoGenerator(sqlSessionFactory).getObject(BoardDao.class);
+      teacherDao = new DaoGenerator(sqlSessionFactory).getObject(TeacherDao.class);
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -37,7 +39,6 @@ public class BoardFormServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
@@ -49,33 +50,26 @@ public class BoardFormServlet extends HttpServlet {
     out.println("</head>");
     out.println("<body>");
     out.println("<h1>게시판</h1>");
-    out.println("<form action='insert' method='post'>");
+
+    out.println("<div><a href='form'>새 글</a></div>");
+
     out.println("<table border='1'>");
     out.println("<tr>");
-    out.println("  <th>제목</th>");
-    out.println("  <td><input type='text' name='title'></td>");
+    out.println("  <th>번호</th> <th>이름</th> <th>이메일</th> <th>전화번호</th>");
     out.println("</tr>");
-    out.println("<tr>");
-    out.println("  <th>내용</th>");
-    out.println("  <td><textarea name='content' rows='10' cols='60'></textarea></td>");
-    out.println("</tr>");
-    out.println("<tr>");
-    out.println("  <th>암호</th>");
-    out.println("  <td><input type='password' name='password'></td>");
-    out.println("</tr>");
+
+    List<Teacher> teachers = this.teacherDao.findAll();
+    for (Teacher t : teachers) {
+      out.println("<tr>");
+      
+      
+      out.printf("  <td>%d</td> <td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td>\n",
+          t.getNo(), t.getName(), t.getEmail(), t.getTel(), t.getCreatedDate());
+      out.println("</tr>");
+    }
     out.println("</table>");
-    out.println("<div>");
-    out.println("  <button>등록</button>");
-    out.println("  <button id='btn-cancel' type='button'>취소</button>");
-    out.println("</div>");
-    out.println("</form>");
-    out.println("<script>");
-    out.println("document.querySelector('#btn-cancel').onclick = function() {");
-    out.println("  location.href = 'list';");
-    out.println("}");
-    out.println("</script>");
+
     out.println("</body>");
     out.println("</html>");
-
   }
 }

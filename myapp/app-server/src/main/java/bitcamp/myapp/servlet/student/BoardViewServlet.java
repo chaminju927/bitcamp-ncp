@@ -1,4 +1,4 @@
-package bitcamp.myapp.servlet.board;
+package bitcamp.myapp.servlet.student;
 
 import java.io.IOException;
 import java.io.InputStream;

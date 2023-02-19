@@ -1,4 +1,4 @@
-package bitcamp.myapp.servlet.board;
+package bitcamp.myapp.servlet.student;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,7 +14,7 @@ import bitcamp.myapp.dao.BoardDao;
 import bitcamp.util.BitcampSqlSessionFactory;
 import bitcamp.util.DaoGenerator;
 
-@WebServlet("/Board/form")
+@WebServlet("/board/form")
 public class BoardFormServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 

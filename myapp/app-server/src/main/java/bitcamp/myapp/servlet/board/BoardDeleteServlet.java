@@ -35,7 +35,6 @@ public class BoardDeleteServlet extends HttpServlet {
     }
   }
 
-
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
@@ -73,6 +72,4 @@ public class BoardDeleteServlet extends HttpServlet {
 
     response.setHeader("Refresh", "1;url=list");
   }
-
-
 }

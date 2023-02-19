@@ -1,4 +1,4 @@
-package bitcamp.myapp.servlet.board;
+package bitcamp.myapp.servlet.student;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,16 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import bitcamp.myapp.dao.BoardDao;
+import bitcamp.myapp.vo.Board;
 import bitcamp.util.BitcampSqlSessionFactory;
 import bitcamp.util.DaoGenerator;
 
-@WebServlet("/Board/form")
-public class BoardFormServlet extends HttpServlet {
+@WebServlet("/board/insert")
+public class BoardInsertServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   private BoardDao boardDao;
 
-  public BoardFormServlet() {
+  public BoardInsertServlet() {
     try {
       InputStream mybatisConfigInputStream = Resources.getResourceAsStream(
           "bitcamp/myapp/config/mybatis-config.xml");
@@ -35,8 +36,14 @@ public class BoardFormServlet extends HttpServlet {
   }
 
   @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+    request.setCharacterEncoding("UTF-8");
+
+    Board board = new Board();
+    board.setTitle(request.getParameter("title"));
+    board.setContent(request.getParameter("content"));
+    board.setPassword(request.getParameter("password"));
 
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
@@ -45,37 +52,17 @@ public class BoardFormServlet extends HttpServlet {
     out.println("<html>");
     out.println("<head>");
     out.println("<meta charset='UTF-8'>");
+    out.println("<meta http-equiv='Refresh' content='1;url=list'>");
     out.println("<title>비트캠프 - NCP 1기</title>");
     out.println("</head>");
     out.println("<body>");
     out.println("<h1>게시판</h1>");
-    out.println("<form action='insert' method='post'>");
-    out.println("<table border='1'>");
-    out.println("<tr>");
-    out.println("  <th>제목</th>");
-    out.println("  <td><input type='text' name='title'></td>");
-    out.println("</tr>");
-    out.println("<tr>");
-    out.println("  <th>내용</th>");
-    out.println("  <td><textarea name='content' rows='10' cols='60'></textarea></td>");
-    out.println("</tr>");
-    out.println("<tr>");
-    out.println("  <th>암호</th>");
-    out.println("  <td><input type='password' name='password'></td>");
-    out.println("</tr>");
-    out.println("</table>");
-    out.println("<div>");
-    out.println("  <button>등록</button>");
-    out.println("  <button id='btn-cancel' type='button'>취소</button>");
-    out.println("</div>");
-    out.println("</form>");
-    out.println("<script>");
-    out.println("document.querySelector('#btn-cancel').onclick = function() {");
-    out.println("  location.href = 'list';");
-    out.println("}");
-    out.println("</script>");
+
+    boardDao.insert(board);
+    out.println("<p>입력 했습니다.</p>");
+
     out.println("</body>");
     out.println("</html>");
-
   }
+
 }

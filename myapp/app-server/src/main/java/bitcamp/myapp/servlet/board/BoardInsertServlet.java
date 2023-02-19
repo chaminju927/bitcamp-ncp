@@ -65,5 +65,4 @@ public class BoardInsertServlet extends HttpServlet {
     out.println("</html>");
   }
 
-
 }

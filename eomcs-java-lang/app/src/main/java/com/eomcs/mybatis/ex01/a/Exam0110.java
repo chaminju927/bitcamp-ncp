@@ -50,7 +50,8 @@ public class Exam0110 {
     // 2. SqlSessionFactory를 만들어 줄 빌더 객체 준비
     //
     SqlSessionFactoryBuilder factoryBuilder = new SqlSessionFactoryBuilder();
-
+  
+    
     // 3. SqlSession 객체를 만들어 줄 팩토리 객체 준비
     // => mybatis는 Builder를 이용하여 SqlSessionFactory 객체를 만든다.
     // => 이때 공장 객체를 만들 때 사용할 설정 파일을 지정한다.
