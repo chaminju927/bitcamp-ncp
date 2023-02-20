@@ -22,10 +22,10 @@ public class DaoGenerator implements InvocationHandler {
   public <T> T getObject(Class<T> classInfo) {
     String className = classInfo.getName();
 
-    return (T) Proxy.newProxyInstance(  //proxy 객체 생성
+    return (T) Proxy.newProxyInstance(
         getClass().getClassLoader(), // 현재 클래스의 로딩을 담당한 관리자: 즉 클래스 로딩 관리자
         new Class[] {classInfo}, // 클래스가 구현해야 할 인터페이스 정보 목록
-        this    //InvocationHandler 객체, 모든 dao에서 공유한다,
+        this // InvocationHandler 객체
         );
   }
 
@@ -39,17 +39,17 @@ public class DaoGenerator implements InvocationHandler {
     String daoName = proxy.getClass().getInterfaces()[0].getSimpleName();
     String methodName = method.getName();
     String sqlStatementName = String.format("%s.%s", daoName, methodName);
-    System.out.printf("%s, %s() 메서드 호출!\n", daoName, method.getName());
+    System.out.printf("%s.%s() 호출!\n", daoName, methodName);
     Class<?> returnType = method.getReturnType();
 
     if (returnType == int.class || returnType == void.class) {
-      return args == null ? sqlSession.insert(sqlStatementName, args[0]) :
+      return args == null ? sqlSession.insert(sqlStatementName) :
         sqlSession.insert(sqlStatementName, args[0]);
-    } else if(returnType == List.class) {
-      return args == null ? sqlSession.selectList(sqlStatementName, args[0]) :
-        sqlSession.selectList(sqlStatementName, args[0]) ;
+    } else if (returnType == List.class) {
+      return args == null ? sqlSession.selectList(sqlStatementName) :
+        sqlSession.selectList(sqlStatementName, args[0]);
     } else {
-      return args == null ? sqlSession.selectOne(sqlStatementName, args[0]) :
+      return args == null ? sqlSession.selectOne(sqlStatementName) :
         sqlSession.selectOne(sqlStatementName, args[0]);
     }
   }
@@ -63,22 +63,28 @@ public class DaoGenerator implements InvocationHandler {
 
     DaoGenerator generator = new DaoGenerator(sqlSessionFactory);
     BoardDao dao = generator.getObject(BoardDao.class);
-    //
+
     //    Board b = new Board();
     //    b.setTitle("테스트1");
     //    b.setContent("테스트내용1");
     //    b.setPassword("1111");
+    //    dao.insert(b);
 
-    //dao.insert(b);
+    //    Board b = new Board();
+    //    b.setNo(13);
+    //    b.setTitle("테스트1xxx");
+    //    b.setContent("테스트내용1xxxx");
+    //    b.setPassword("1111");
+    //    dao.update(b);
+
+    //    dao.delete(13);
 
     //    List<Board> list = dao.findAll();
     //    for (Board b : list) {
     //      System.out.println(b);
     //    }
 
-    //System.out.println(dao.findByNo(13));
-
-
+    //    System.out.println(dao.findByNo(13));
   }
 
 }
