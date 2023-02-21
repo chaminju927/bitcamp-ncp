@@ -1,17 +1,8 @@
 <%@page import="bitcamp.myapp.vo.Teacher"%>
 <%@page import="java.util.List"%>
-<%@page import="bitcamp.myapp.dao.TeacherDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%! 
-  private TeacherDao teacherDao;
-
-  @Override
-  public void init() {
-    ServletContext ctx = getServletContext();
-    teacherDao = (TeacherDao) ctx.getAttribute("teacherDao");
-  }
-  
   private static String getDegreeText(int degree) {
     switch (degree) {
       case 1: return "고졸";
@@ -23,7 +14,6 @@
     }
   }
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +30,7 @@
   <th>번호</th> <th>이름</th> <th>전화</th> <th>학위</th> <th>전공</th> <th>시강료</th>
 </tr>
 <% 
-    List<Teacher> teachers = this.teacherDao.findAll();
+    List<Teacher> teachers = (List<Teacher>) request.getAttribute("teachers");
     for (Teacher teacher : teachers) {
 %>
   <tr>
