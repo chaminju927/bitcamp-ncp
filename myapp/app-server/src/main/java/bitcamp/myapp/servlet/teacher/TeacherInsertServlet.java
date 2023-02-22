@@ -41,14 +41,18 @@ public class TeacherInsertServlet extends HttpServlet {
     teacher.setMajor(request.getParameter("major"));
     teacher.setWage(Integer.parseInt(request.getParameter("wage")));
 
-
     txManager.startTransaction();
-    memberDao.insert(teacher);
-    teacherDao.insert(teacher);
-    txManager.commit();
+    try {
+      memberDao.insert(teacher);
+      teacherDao.insert(teacher);
+      txManager.commit();
 
+    } catch (Exception e) {
+      txManager.rollback();
+      e.printStackTrace();
+      request.setAttribute("error", "other");
+    }
     request.getRequestDispatcher("/teacher/insert.jsp").forward(request, response);
-
   }
 
 }

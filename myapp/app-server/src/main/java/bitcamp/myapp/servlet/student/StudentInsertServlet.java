@@ -44,10 +44,17 @@ public class StudentInsertServlet extends HttpServlet {
     student.setLevel(Byte.parseByte(request.getParameter("level")));
 
     txManager.startTransaction();
-    memberDao.insert(student);
-    studentDao.insert(student);
-    txManager.commit();
+    try {
+      memberDao.insert(student);
+      studentDao.insert(student);
+      txManager.commit();
 
+    } catch (Exception e) {
+      txManager.rollback();
+      e.printStackTrace();
+      request.setAttribute("error", "other");
+    }
     request.getRequestDispatcher("/student/insert.jsp").forward(request, response);
   }
+
 }

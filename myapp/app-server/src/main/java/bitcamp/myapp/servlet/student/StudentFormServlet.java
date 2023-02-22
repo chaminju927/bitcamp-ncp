@@ -14,6 +14,8 @@ public class StudentFormServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+
     request.getRequestDispatcher("/student/form.jsp").forward(request, response);
+
   }
 }

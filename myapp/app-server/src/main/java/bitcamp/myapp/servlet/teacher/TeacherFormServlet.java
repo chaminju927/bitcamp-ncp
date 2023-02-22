@@ -16,6 +16,5 @@ public class TeacherFormServlet extends HttpServlet {
       throws ServletException, IOException {
 
     request.getRequestDispatcher("/teacher/form.jsp").forward(request, response);
-
   }
 }

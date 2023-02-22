@@ -37,14 +37,13 @@ public class StudentDeleteServlet extends HttpServlet {
       if (studentDao.delete(studentNo) == 1 &&
           memberDao.delete(studentNo) == 1) {
         txManager.commit();
-
       } else {
         request.setAttribute("error", "data");
       }
     } catch (Exception e) {
       txManager.rollback();
       e.printStackTrace();
-      request.setAttribute("error", "data");
+      request.setAttribute("error", "other");
     }
     request.getRequestDispatcher("/student/delete.jsp").forward(request, response);
   }

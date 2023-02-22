@@ -27,11 +27,12 @@ public class BoardViewServlet extends HttpServlet {
       throws ServletException, IOException {
 
     int boardNo = Integer.parseInt(request.getParameter("no"));
-    Board b = this.boardDao.findByNo(boardNo);
+    Board b = boardDao.findByNo(boardNo);
     if (b != null) {
       boardDao.increaseViewCount(boardNo);
       request.setAttribute("board", b);
     }
     request.getRequestDispatcher("/board/view.jsp").forward(request, response);
   }
+
 }

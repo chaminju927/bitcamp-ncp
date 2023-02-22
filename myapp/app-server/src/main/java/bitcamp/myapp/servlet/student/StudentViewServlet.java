@@ -28,7 +28,7 @@ public class StudentViewServlet extends HttpServlet {
 
     int studentNo = Integer.parseInt(request.getParameter("no"));
     Student student = this.studentDao.findByNo(studentNo);
-    if (student!= null) {
+    if (student != null) {
       request.setAttribute("student", student);
     }
     request.getRequestDispatcher("/student/view.jsp").forward(request, response);

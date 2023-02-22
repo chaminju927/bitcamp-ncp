@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import bitcamp.myapp.dao.BoardDao;
 import bitcamp.myapp.vo.Board;
+import bitcamp.myapp.vo.Member;
 
 @WebServlet("/board/update")
 public class BoardUpdateServlet extends HttpServlet {
@@ -25,24 +26,29 @@ public class BoardUpdateServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+
+    // 로그인 사용자 정보를 가져온다.
+    Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+
     Board board = new Board();
     board.setNo(Integer.parseInt(request.getParameter("no")));
     board.setTitle(request.getParameter("title"));
     board.setContent(request.getParameter("content"));
-    board.setPassword(request.getParameter("password"));
-
+    // board.setPassword(request.getParameter("password"));
 
     Board old = boardDao.findByNo(board.getNo());
 
-    if (old == null) {
+    if (old.getWriterNo() != loginUser.getNo()) {
+      response.sendRedirect("../auth/fail");
+      return;   //redirect후엔 포워딩 하면 안됨.리턴으로 끊기
+
+    } else if ( boardDao.update(board) == 0) {
       request.setAttribute("error", "data");
-
-    } else if (!old.getPassword().equals(board.getPassword())) {
-      request.setAttribute("error", "password");
-
-    } else {
-      boardDao.update(board);
     }
     request.getRequestDispatcher("/board/update.jsp").forward(request, response);
   }
 }
+
+
+
+

@@ -2,7 +2,6 @@ package bitcamp.myapp.servlet.student;
 
 import java.io.IOException;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,23 +26,10 @@ public class StudentListServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
     String keyword = request.getParameter("keyword");
     List<Student> students = this.studentDao.findAll(keyword);
-
     request.setAttribute("students", students);
-
-    RequestDispatcher dispatcher = request.getRequestDispatcher("/student/list.jsp");
-
-    dispatcher.forward(request, response);
+    request.getRequestDispatcher("/student/list.jsp").forward(request, response);
   }
 
-
-  //  private static String getLevelText(int level) {
-  //    switch (level) {
-  //      case 0: return "비전공자";
-  //      case 1: return "준전공자";
-  //      default: return "전공자";
-  //    }
 }
-
