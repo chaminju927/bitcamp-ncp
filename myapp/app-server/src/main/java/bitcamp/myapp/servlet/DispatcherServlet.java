@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import bitcamp.myapp.controller.PageController;
 
-// 이 클래스를 서블릿 컨테이너에 등록한다.
-// 클라이언트에서 /app URL로 요청을 했을 때 이 클래스를 실행한다.
 @MultipartConfig(maxFileSize = 1024 * 1024 * 50)
 @WebServlet("/app/*")
 public class DispatcherServlet extends HttpServlet {
@@ -22,13 +20,13 @@ public class DispatcherServlet extends HttpServlet {
   @Override
   public void service(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    // 요청  URL => http://localhost:8080/web/board/list
-    // - Context Root : /web
-    // - ServletPath : /app
-    // - PathInfo : /board/list
+    // 요청 URL => http://localhost:8080/web/app/board/list
+    // - Context Root: /web
+    // - ServletPath: /app
+    // - PathInfo: /board/list
     String pathInfo = request.getPathInfo();
 
-    //페이지 컨트롤러 실행
+    // 페이지 컨트롤러 실행
     if (pathInfo.equals("/")) {
       response.sendRedirect(request.getContextPath() + "/");
       return;
@@ -36,14 +34,14 @@ public class DispatcherServlet extends HttpServlet {
 
     ServletContext ctx = getServletContext();
 
-    //클라이언트가 요청한 URL을 가지고 페이지 컨트롤러를 찾는다.
+    // 클라이언트가 요청한 URL을 가지고 페이지 컨트롤러를 찾는다.
     PageController controller = (PageController) ctx.getAttribute(pathInfo);
     if (controller == null) {
       request.getRequestDispatcher("/NotFoundController.jsp").forward(request, response);
       return;
     }
 
-    //페이지 컨트롤러 실행
+    // 페이지 컨트롤러 실행
     String view = controller.execute(request, response);
 
     // 쿠키 처리
@@ -56,13 +54,14 @@ public class DispatcherServlet extends HttpServlet {
     }
 
     // 뷰 컴포넌트 실행
-    if(view != null) {
+    if (view != null) {
       if (view.startsWith("redirect:")) {
         response.sendRedirect(view.substring(9));
       } else {
         request.getRequestDispatcher(view).forward(request, response);
       }
     }
+
   }
 }
 

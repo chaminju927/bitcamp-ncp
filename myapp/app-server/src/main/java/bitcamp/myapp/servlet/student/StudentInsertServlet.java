@@ -42,7 +42,6 @@ public class StudentInsertServlet extends HttpServlet {
       request.setAttribute("error", "other");
     }
     request.setAttribute("view", "/student/insert.jsp");
-
   }
 
 }

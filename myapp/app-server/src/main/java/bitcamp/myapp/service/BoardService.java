@@ -5,16 +5,16 @@ import bitcamp.myapp.vo.Board;
 import bitcamp.myapp.vo.BoardFile;
 
 public interface BoardService {
-
-  void add(Board board) ;
+  void add(Board board);
   List<Board> list(String keyword);
-  Board get(int no) ;
+  Board get(int no);
   void update(Board board);
-  void delete(int no) ;
-  void deleteFile(int fileNo);
-  BoardFile getFile(int fileNo);
+  void delete(int no);
 
+  BoardFile getFile(int fileNo);
+  void deleteFile(int fileNo);
 }
+
 
 
 

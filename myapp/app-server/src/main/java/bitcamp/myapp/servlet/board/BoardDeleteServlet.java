@@ -41,7 +41,6 @@ public class BoardDeleteServlet extends HttpServlet {
       e.printStackTrace();
       request.setAttribute("error", "data");
     }
-
     request.setAttribute("view", "/board/delete.jsp");
   }
 }

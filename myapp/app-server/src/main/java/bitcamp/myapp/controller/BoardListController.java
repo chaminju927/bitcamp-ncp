@@ -5,9 +5,10 @@ import javax.servlet.http.HttpServletResponse;
 import bitcamp.myapp.service.BoardService;
 
 public class BoardListController implements PageController {
+
   private BoardService boardService;
 
-  public BoardListController (BoardService boarService) {
+  public BoardListController(BoardService boardService) {
     this.boardService = boardService;
   }
 

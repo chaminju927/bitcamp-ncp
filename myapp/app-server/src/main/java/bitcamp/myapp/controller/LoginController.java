@@ -13,7 +13,7 @@ public class LoginController implements PageController {
   private StudentService studentService;
   private TeacherService teacherService;
 
-  public LoginController (StudentService studentService, TeacherService teacherService ) {
+  public LoginController(StudentService studentService, TeacherService teacherService) {
     this.studentService = studentService;
     this.teacherService = teacherService;
   }
@@ -36,7 +36,6 @@ public class LoginController implements PageController {
       response.addCookie(cookie);
     }
 
-
     Member member = null;
     switch (usertype) {
       case "student":
@@ -50,12 +49,14 @@ public class LoginController implements PageController {
     if (member != null) {
       HttpSession session = request.getSession();
       session.setAttribute("loginUser", member);
-      return "redirect:../"; // ===> http://localhost:8080/web/
+      return "redirect:../";
     } else {
       request.setAttribute("error", "loginfail");
       return "/auth/form.jsp";
     }
+
   }
+
 }
 
 

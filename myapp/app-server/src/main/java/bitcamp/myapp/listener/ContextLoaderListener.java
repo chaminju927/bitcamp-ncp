@@ -48,7 +48,6 @@ public class ContextLoaderListener implements ServletContextListener {
       TeacherDao teacherDao = new DaoGenerator(sqlSessionFactory).getObject(TeacherDao.class);
       BoardFileDao boardFileDao = new DaoGenerator(sqlSessionFactory).getObject(BoardFileDao.class);
 
-      //파일첨부 기능 사용하는 경우
       BoardService boardService = new DefaultBoardService(txManager, boardDao, boardFileDao);
       StudentService studentService = new DefaultStudentService(txManager, memberDao, studentDao);
       TeacherService teacherService = new DefaultTeacherService(txManager, memberDao, teacherDao);
@@ -65,7 +64,7 @@ public class ContextLoaderListener implements ServletContextListener {
       // 서블릿 컨텍스트 보관소를 알아낸다.
       ServletContext ctx = sce.getServletContext();
 
-      // 프론트 컨트롤러가 사용할 페이지 컨트롤러를 url 이름으로 보관한다.
+      // 프론트 컨트롤러가 사용할 페이지 컨트롤러를 보관한다.
       ctx.setAttribute("/auth/form", loginFormController);
       ctx.setAttribute("/auth/login", loginController);
       ctx.setAttribute("/auth/logout", logoutController);
@@ -74,6 +73,7 @@ public class ContextLoaderListener implements ServletContextListener {
       ctx.setAttribute("/board/list", boardListController);
       ctx.setAttribute("/board/form", boardFormController);
       ctx.setAttribute("/board/insert", boardInsertController);
+
 
     } catch (Exception e) {
       System.out.println("웹 애플리케이션 자원을 준비하는 중에 오류 발생!");

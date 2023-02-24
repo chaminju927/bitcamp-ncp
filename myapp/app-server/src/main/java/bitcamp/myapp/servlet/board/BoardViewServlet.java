@@ -25,7 +25,6 @@ public class BoardViewServlet extends HttpServlet {
     request.setAttribute("board",
         boardService.get(Integer.parseInt(request.getParameter("no"))));
     request.setAttribute("view", "/board/view.jsp");
-
   }
 
 }

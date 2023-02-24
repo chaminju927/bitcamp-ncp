@@ -16,7 +16,6 @@ import bitcamp.myapp.vo.Board;
 import bitcamp.myapp.vo.BoardFile;
 import bitcamp.myapp.vo.Member;
 
-
 public class BoardInsertController implements PageController {
 
   private BoardService boardService;
@@ -26,7 +25,7 @@ public class BoardInsertController implements PageController {
   }
 
   @Override
-  public String execute(HttpServletRequest request, HttpServletResponse response){
+  public String execute(HttpServletRequest request, HttpServletResponse response) {
     try {
       DiskFileItemFactory factory = new DiskFileItemFactory();
       ServletFileUpload upload = new ServletFileUpload(factory);
@@ -41,6 +40,7 @@ public class BoardInsertController implements PageController {
           files.add(item);
         }
       }
+
       Board board = new Board();
       board.setTitle(paramMap.get("title"));
       board.setContent(paramMap.get("content"));
@@ -72,8 +72,7 @@ public class BoardInsertController implements PageController {
       e.printStackTrace();
       request.setAttribute("error", "data");
     }
-
-    return"/board/insert.jsp";
+    return "/board/insert.jsp";
   }
 
 }

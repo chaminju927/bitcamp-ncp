@@ -75,6 +75,7 @@ public class BoardUpdateServlet extends HttpServlet {
 
     request.setAttribute("view", "/board/update.jsp");
   }
+
 }
 
 

@@ -21,7 +21,6 @@ public class DefaultTeacherService implements TeacherService {
     this.teacherDao = teacherDao;
   }
 
-  @Override
   public void add(Teacher teacher) {
     txManager.startTransaction();
     try {
@@ -35,17 +34,14 @@ public class DefaultTeacherService implements TeacherService {
     }
   }
 
-  @Override
   public List<Teacher> list() {
     return teacherDao.findAll();
   }
 
-  @Override
   public Teacher get(int no) {
     return teacherDao.findByNo(no);
   }
 
-  @Override
   public Teacher get(String email, String password) {
     Map<String,Object> paramMap = new HashMap<>();
     paramMap.put("email", email);
@@ -54,7 +50,6 @@ public class DefaultTeacherService implements TeacherService {
     return teacherDao.findByEmailAndPassword(paramMap);
   }
 
-  @Override
   public void update(Teacher teacher) {
     try {
       txManager.startTransaction();
@@ -70,7 +65,6 @@ public class DefaultTeacherService implements TeacherService {
     }
   }
 
-  @Override
   public void delete(int no) {
     try {
       txManager.startTransaction();
