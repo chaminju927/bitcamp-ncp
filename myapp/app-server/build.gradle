@@ -67,6 +67,9 @@ dependencies {
     //   왜? 서블릿 컨테이너에 포함되어 있기 때문이다.
     providedCompile 'javax.servlet:javax.servlet-api:4.0.1'
     
+     // multipart/form-data 처리 라이브러리
+    implementation 'commons-fileupload:commons-fileupload:1.5'
+    
     // JSTL라이브러리
     implementation 'javax.servlet:jstl:1.2'
     
