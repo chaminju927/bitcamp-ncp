@@ -7,19 +7,27 @@ import javax.servlet.http.HttpSession;
 import bitcamp.myapp.service.StudentService;
 import bitcamp.myapp.service.TeacherService;
 import bitcamp.myapp.vo.Member;
+import bitcamp.util.Controller;
+import bitcamp.util.RequestMapping;
 
-public class LoginController implements PageController {
+@Controller
+public class AuthController {
 
   private StudentService studentService;
   private TeacherService teacherService;
 
-  public LoginController(StudentService studentService, TeacherService teacherService) {
+  public AuthController(StudentService studentService, TeacherService teacherService) {
     this.studentService = studentService;
     this.teacherService = teacherService;
   }
 
-  @Override
-  public String execute(HttpServletRequest request, HttpServletResponse response) {
+  @RequestMapping("/auth/form")
+  public String form(HttpServletRequest request, HttpServletResponse response) {
+    return "/auth/form.jsp";
+  }
+
+  @RequestMapping("/auth/login")
+  public String login(HttpServletRequest request, HttpServletResponse response) {
 
     String usertype = request.getParameter("usertype");
     String email = request.getParameter("email");
@@ -57,6 +65,16 @@ public class LoginController implements PageController {
 
   }
 
+  @RequestMapping("/auth/logout")
+  public String logout(HttpServletRequest request, HttpServletResponse response) {
+    request.getSession().invalidate();
+    return "redirect:../";
+  }
+
+  @RequestMapping("/auth/fail")
+  public String fail(HttpServletRequest request, HttpServletResponse response) {
+    return "/auth/fail.jsp";
+  }
 }
 
 
