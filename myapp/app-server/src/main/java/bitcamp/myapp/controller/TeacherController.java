@@ -1,11 +1,11 @@
 package bitcamp.myapp.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import bitcamp.myapp.service.TeacherService;
 import bitcamp.myapp.vo.Teacher;
 import bitcamp.util.Controller;
 import bitcamp.util.RequestMapping;
+import bitcamp.util.RequestParam;
 
 @Controller
 public class TeacherController {
@@ -17,17 +17,26 @@ public class TeacherController {
   }
 
   @RequestMapping("/teacher/insert")
-  public String insert(HttpServletRequest request, HttpServletResponse response) {
+  public String insert(
+      @RequestParam("name") String name,
+      @RequestParam("email") String email,
+      @RequestParam("password") String password,
+      @RequestParam("tel") String tel,
+      @RequestParam("degree") int degree,
+      @RequestParam("school") String school,
+      @RequestParam("major") String major,
+      @RequestParam("wage") int wage,
+      HttpServletRequest request) {
 
     Teacher teacher = new Teacher();
-    teacher.setName(request.getParameter("name"));
-    teacher.setEmail(request.getParameter("email"));
-    teacher.setPassword(request.getParameter("password"));
-    teacher.setTel(request.getParameter("tel"));
-    teacher.setDegree(Integer.parseInt(request.getParameter("degree")));
-    teacher.setSchool(request.getParameter("school"));
-    teacher.setMajor(request.getParameter("major"));
-    teacher.setWage(Integer.parseInt(request.getParameter("wage")));
+    teacher.setName(name);
+    teacher.setEmail(email);
+    teacher.setPassword(password);
+    teacher.setTel(tel);
+    teacher.setDegree(degree);
+    teacher.setSchool(school);
+    teacher.setMajor(major);
+    teacher.setWage(wage);
 
     try {
       teacherService.add(teacher);
@@ -39,36 +48,47 @@ public class TeacherController {
   }
 
   @RequestMapping("/teacher/form")
-  public String form(HttpServletRequest request, HttpServletResponse response) {
+  public String form() {
     return "/teacher/form.jsp";
   }
 
   @RequestMapping("/teacher/list")
-  public String list(HttpServletRequest request, HttpServletResponse response) {
+  public String list(HttpServletRequest request) {
     request.setAttribute("teachers", teacherService.list());
     return "/teacher/list.jsp";
   }
 
   @RequestMapping("/teacher/view")
-  public String view(HttpServletRequest request, HttpServletResponse response) {
-    request.setAttribute("teacher",
-        teacherService.get(Integer.parseInt(request.getParameter("no"))));
+  public String view(
+      @RequestParam("no") int no,
+      HttpServletRequest request) {
+    request.setAttribute("teacher", teacherService.get(no));
     return "/teacher/view.jsp";
   }
 
   @RequestMapping("/teacher/update")
-  public String udpate(HttpServletRequest request, HttpServletResponse response) {
+  public String udpate(
+      @RequestParam("no") int no,
+      @RequestParam("name") String name,
+      @RequestParam("email") String email,
+      @RequestParam("password") String password,
+      @RequestParam("tel") String tel,
+      @RequestParam("degree") int degree,
+      @RequestParam("school") String school,
+      @RequestParam("major") String major,
+      @RequestParam("wage") int wage,
+      HttpServletRequest request) {
 
     Teacher teacher = new Teacher();
-    teacher.setNo(Integer.parseInt(request.getParameter("no")));
-    teacher.setName(request.getParameter("name"));
-    teacher.setEmail(request.getParameter("email"));
-    teacher.setPassword(request.getParameter("password"));
-    teacher.setTel(request.getParameter("tel"));
-    teacher.setDegree(Integer.parseInt(request.getParameter("degree")));
-    teacher.setSchool(request.getParameter("school"));
-    teacher.setMajor(request.getParameter("major"));
-    teacher.setWage(Integer.parseInt(request.getParameter("wage")));
+    teacher.setNo(no);
+    teacher.setName(name);
+    teacher.setEmail(email);
+    teacher.setPassword(password);
+    teacher.setTel(tel);
+    teacher.setDegree(degree);
+    teacher.setSchool(school);
+    teacher.setMajor(major);
+    teacher.setWage(wage);
 
     try {
       teacherService.update(teacher);
@@ -80,15 +100,15 @@ public class TeacherController {
   }
 
   @RequestMapping("/teacher/delete")
-  public String delete(HttpServletRequest request, HttpServletResponse response) {
-
+  public String delete(
+      @RequestParam("no") int no,
+      HttpServletRequest request) {
     try {
-      teacherService.delete(Integer.parseInt(request.getParameter("no")));
+      teacherService.delete(no);
     } catch (Exception e) {
       e.printStackTrace();
       request.setAttribute("error", "other");
     }
     return "/teacher/delete.jsp";
   }
-
 }

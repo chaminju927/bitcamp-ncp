@@ -6,6 +6,7 @@ import bitcamp.myapp.service.StudentService;
 import bitcamp.myapp.vo.Student;
 import bitcamp.util.Controller;
 import bitcamp.util.RequestMapping;
+import bitcamp.util.RequestParam;
 
 @Controller
 public class StudentController {
@@ -17,18 +18,30 @@ public class StudentController {
   }
 
   @RequestMapping("/student/insert")
-  public String insert(HttpServletRequest request, HttpServletResponse response) {
+  public String insert(
+      @RequestParam("name") String name,
+      @RequestParam("email") String email,
+      @RequestParam("password") String password,
+      @RequestParam("tel") String tel,
+      @RequestParam("postNo") String postNo,
+      @RequestParam("basicAddress") String basicAddress,
+      @RequestParam("detailAddress") String detailAddress,
+      @RequestParam("working") boolean working,
+      @RequestParam("gender") char gender,
+      @RequestParam("level") byte level,
+      HttpServletRequest request) {
+
     Student student = new Student();
-    student.setName(request.getParameter("name"));
-    student.setEmail(request.getParameter("email"));
-    student.setPassword(request.getParameter("password"));
-    student.setTel(request.getParameter("tel"));
-    student.setPostNo(request.getParameter("postNo"));
-    student.setBasicAddress(request.getParameter("basicAddress"));
-    student.setDetailAddress(request.getParameter("detailAddress"));
-    student.setWorking(request.getParameter("working") != null);
-    student.setGender(request.getParameter("gender").charAt(0));
-    student.setLevel(Byte.parseByte(request.getParameter("level")));
+    student.setName(name);
+    student.setEmail(email);
+    student.setPassword(password);
+    student.setTel(tel);
+    student.setPostNo(postNo);
+    student.setBasicAddress(basicAddress);
+    student.setDetailAddress(detailAddress);
+    student.setWorking(working);
+    student.setGender(gender);
+    student.setLevel(level);
 
     try {
       studentService.add(student);
@@ -40,7 +53,7 @@ public class StudentController {
   }
 
   @RequestMapping("/student/form")
-  public String form(HttpServletRequest request, HttpServletResponse response) {
+  public String form() {
     return "/student/form.jsp";
   }
 
@@ -51,26 +64,41 @@ public class StudentController {
   }
 
   @RequestMapping("/student/view")
-  public String view(HttpServletRequest request, HttpServletResponse response) {
+  public String view(
+      @RequestParam("no") int no,
+      HttpServletRequest request) {
     request.setAttribute("student",
-        studentService.get(Integer.parseInt(request.getParameter("no"))));
+        studentService.get(no));
     return"/student/view.jsp";
   }
 
   @RequestMapping("/student/update")
-  public String update(HttpServletRequest request, HttpServletResponse response) {
+  public String update(
+      @RequestParam("no") int no,
+      @RequestParam("name") String name,
+      @RequestParam("email") String email,
+      @RequestParam("password") String password,
+      @RequestParam("tel") String tel,
+      @RequestParam("postNo") String postNo,
+      @RequestParam("basicAddress") String basicAddress,
+      @RequestParam("detailAddress") String detailAddress,
+      @RequestParam("working") boolean working,
+      @RequestParam("gender") char gender,
+      @RequestParam("level") byte level,
+      HttpServletRequest request) {
+
     Student student = new Student();
-    student.setNo(Integer.parseInt(request.getParameter("no")));
-    student.setName(request.getParameter("name"));
-    student.setEmail(request.getParameter("email"));
-    student.setPassword(request.getParameter("password"));
-    student.setTel(request.getParameter("tel"));
-    student.setPostNo(request.getParameter("postNo"));
-    student.setBasicAddress(request.getParameter("basicAddress"));
-    student.setDetailAddress(request.getParameter("detailAddress"));
-    student.setWorking(request.getParameter("working") != null);
-    student.setGender(request.getParameter("gender").charAt(0));
-    student.setLevel(Byte.parseByte(request.getParameter("level")));
+    student.setNo(no);
+    student.setName(name);
+    student.setEmail(email);
+    student.setPassword(password);
+    student.setTel(tel);
+    student.setPostNo(postNo);
+    student.setBasicAddress(basicAddress);
+    student.setDetailAddress(detailAddress);
+    student.setWorking(working);
+    student.setGender(gender);
+    student.setLevel(level);
 
     try {
       studentService.update(student);
@@ -82,9 +110,11 @@ public class StudentController {
   }
 
   @RequestMapping("/student/delete")
-  public String delete(HttpServletRequest request, HttpServletResponse response) {
+  public String delete(
+      @RequestParam("no") int no,
+      HttpServletRequest request) {
     try {
-      studentService.delete(Integer.parseInt(request.getParameter("no")));
+      studentService.delete(no);
     } catch (Exception e) {
       e.printStackTrace();
       request.setAttribute("error", "other");
