@@ -20,7 +20,7 @@ public class AuthController {
 
   @RequestMapping("/auth/form")
   public String form() {
-    return "/auth/form.jsp";
+    return "auth/form";
   }
 
   @RequestMapping("/auth/login")
@@ -56,11 +56,12 @@ public class AuthController {
 
     if (member != null) {
       session.setAttribute("loginUser", member);
-      return "redirect:../../";  //위치!! 현재 auth 밖 app 밖 web
+      return "redirect:../../";
     } else {
       request.setAttribute("error", "loginfail");
-      return "/auth/form.jsp";
+      return "auth/form";
     }
+
   }
 
   @RequestMapping("/auth/logout")
@@ -71,8 +72,9 @@ public class AuthController {
 
   @RequestMapping("/auth/fail")
   public String fail() {
-    return "/auth/fail.jsp";
+    return "auth/fail";
   }
+
 }
 
 

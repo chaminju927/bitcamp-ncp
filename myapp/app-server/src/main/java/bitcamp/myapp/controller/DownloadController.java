@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import bitcamp.myapp.service.BoardService;
 import bitcamp.myapp.vo.BoardFile;
 
@@ -18,11 +19,12 @@ public class DownloadController {
   @Autowired private BoardService boardService;
 
   @RequestMapping("/download/boardfile")
-  public String execute(HttpServletRequest request, HttpServletResponse response) {
+  public String execute(
+      @RequestParam("fileNo") int fileNo,
+      HttpServletRequest request,
+      HttpServletResponse response) {
 
     try {
-      int fileNo = Integer.parseInt(request.getParameter("fileNo"));
-
       BoardFile boardFile = boardService.getFile(fileNo);
       if (boardFile == null) {
         throw new RuntimeException("파일 정보 없음!");
@@ -52,7 +54,7 @@ public class DownloadController {
 
     } catch (Exception e) {
       e.printStackTrace();
-      return "/downloadfail.jsp";
+      return "downloadfail";
     }
     return null;
   }
