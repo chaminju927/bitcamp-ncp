@@ -67,10 +67,9 @@ public class RootConfig {
   @Bean
   public TilesConfigurer tilesConfigurer() {
     TilesConfigurer configurer = new TilesConfigurer();
-    configurer.setDefinitions("/WEB-INF/defs/app-tiles.xml","/WEB-INF/defs/admin-tiles.xml");
+    configurer.setDefinitions("/WEB-INF/defs/app-tiles.xml", "/WEB-INF/defs/admin-tiles.xml");
     return configurer;
   }
-
 }
 
 

@@ -13,17 +13,20 @@
 <style>
 header {
   height: 80px;
-  background:black;
-  color:white;
-  }
-  
-  footer {
-  height: 100px;
-  background: darkgrays;
+  background: black;
   color: white;
-  }
-</style>
+}
 
+footer {
+  height: 100px;
+  background: darkgray;
+  color: white;
+}
+
+a:visited {
+	color: white;
+}
+</style>
 </head>
 <body>
 

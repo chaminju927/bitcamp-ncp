@@ -10,6 +10,19 @@
   <meta http-equiv='Refresh' content='1;url=${refresh}'>
 </c:if>
 <title>비트캠프 - NCP 1기</title>
+<style>
+  header {
+    height: 60px;
+    background-color: gray;
+    color: black;
+  }
+  
+  footer {
+    height: 60px;
+    background-color: navy;
+    color: white;
+  }
+</style>
 </head>
 <body>
 
