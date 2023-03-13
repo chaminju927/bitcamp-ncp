@@ -1,4 +1,4 @@
-package bitcamp.boot.app.controller;
+package main.java.bitcamp.boot.app.controller;
 
 import java.sql.Date;
 import java.util.HashMap;
